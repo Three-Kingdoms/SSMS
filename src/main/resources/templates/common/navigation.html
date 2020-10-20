@@ -1,0 +1,40 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" data-target="#nav-bar-collapse" data-toggle="collapse"
+                    id="nav-bar-toggle" onclick="" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" style="color: white">订阅服务管理系统</a>
+        </div>
+        <div class="collapse navbar-collapse" id="nav-bar-collapse">
+            <ul class="nav navbar-nav" id="nav-bar-links">
+                <li class="active">
+                    <a href="javascript:void(0);">
+                        <img alt="个人订阅" height="20px" src="/images/user-white.svg">个人订阅</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <img alt="多人订阅" height="20px" src="/images/group-white.svg">多人订阅</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <img alt="信息图标" height="20px" src="/images/info-white.svg">我的信息</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" id="userDropdown">
+                    <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" role="button">用户昵称<span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/logout">退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script src="/scripts/navigation.js"></script>

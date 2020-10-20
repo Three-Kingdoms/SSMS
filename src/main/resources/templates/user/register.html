@@ -1,0 +1,35 @@
+<html lang="zh">
+<head>
+    <title>注册</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+          name="viewport">
+    <link href="/styles/style.css" rel="stylesheet">
+    <link href="/styles/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-image: url(https://api.xygeng.cn/Bing/);">
+<div class="login-container">
+    <div class="wrapper">
+        <h3>注册</h3>
+        <div id="alert"></div>
+        <form action="/register" id="form" method="post">
+            <div class="form-group" id="username-textfield">
+                <label class="control-label" for="username">用户名</label>
+                <input autofocus class="form-control input-lg" id="username" name="username" required type="text"/>
+            </div>
+            <div class="form-group" id="nickname-textfield">
+                <label class="control-label" for="nickname">昵称</label>
+                <input class="form-control input-lg" id="nickname" name="nickname" required type="text"/>
+            </div>
+            <div class="form-group" id="password-textfield">
+                <label class="control-label" for="password">创建密码</label>
+                <input class="form-control input-lg" id="password" name="password" required type="text"/>
+            </div>
+            <div class="form-group" id="buttons">
+                <input class="btn btn-primary btn-lg" onclick="" type="submit" value="注册"/>
+                <a class="btn btn-link" href="/login">点此登录</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

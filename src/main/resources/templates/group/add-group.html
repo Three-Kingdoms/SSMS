@@ -1,0 +1,111 @@
+<h3>添加小组</h3>
+<hr/>
+<ul class="nav nav-tabs">
+    <li class="active" id="tab-groupId" onclick="showSearchBox()">
+        <a aria-expanded="true" data-toggle="tab">按组号搜索</a>
+    </li>
+    <li class="" id="tab-groupType" onclick="showSearchType()">
+        <a aria-expanded="false" data-toggle="tab">按类型筛选</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade active in" id="search-box">
+        <form action="/search" class="jumbotron" id="search-form"
+              method="post" role="search">
+            <div class="form-group" id="search-field">
+                <div id="alert"></div>
+                <div class="input-group">
+                    <input name="searchType" type="hidden" value="groupId"/>
+                    <input class="form-control" id="search-input" name="groupId" placeholder="输入要搜索的组号 ..."
+                           type="text" value="">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" onclick="checkEmpty()" type="button">搜索</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <div class="search-result">
+            <h4>搜索结果</h4>
+            <hr/>
+            <p class="lead" style="text-align: center">组号 <%=request.getAttribute("groupId")%> 不存在</p>
+            <h4>搜索结果</h4>
+            <hr/>
+            <div class="cards">
+                <div class="panel panel-default">
+                    <div class="panel-heading serviceId-?">
+                        <div>
+                            <span class="groupNameInPanel">小组名</span>
+                            <span class="groupIdInPanel">小组号：000</span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <span class="groupInfoInPanel">
+                            服务名<br/>
+                            人数：0/0
+                        </span>
+                        <span class="buttonInPanel">
+                            <a class="btn btn-link disabled">已加入</a>
+                            <a class="btn btn-link disabled">人数已满</a>
+                            <a class="btn btn-success btn-lg" href="#">申请加入</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="search-type">
+        <div class="jumbotron">
+            <form action="#" class="form-horizontal" method="post">
+                <fieldset>
+                    <input name="searchType" type="hidden" value="serviceId"/>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" for="select">订阅服务类型</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" disabled id="select" name="serviceType"
+                                    onchange="showServices()">
+                                <option selected value="multi">多人订阅</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="services-multi">
+                        <label class="col-lg-2 control-label" for="multi">多人订阅服务名</label>
+                        <div class="col-lg-10" id="multi">
+                            <button class="btn btn-primary btn-lg serviceId-?" name="serviceId"
+                                    type="submit" value="?">服务名
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="search-result">
+            <h4>搜索结果</h4>
+            <hr/>
+            <p class="lead" style="text-align: center">
+                服务“服务名”不存在
+            </p>
+            <h4>搜索结果</h4>
+            <hr/>
+            <div class="cards">
+                <div class="panel panel-default">
+                    <div class="panel-heading serviceId-？">
+                        <div>
+                            <span class="groupNameInPanel">小组名</span>
+                            <span class="groupIdInPanel">小组号：000</span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <span class="groupInfoInPanel">
+                            服务名<br/>
+                            人数：0/0
+                        </span>
+                        <span class="buttonInPanel">
+                            <a class="btn btn-link disabled">人数已满</a>
+                            <a class="btn btn-success btn-lg" href="#">申请加入</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

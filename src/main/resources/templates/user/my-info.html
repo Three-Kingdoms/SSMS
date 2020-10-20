@@ -1,0 +1,100 @@
+<h3>我的信息</h3>
+<hr/>
+<ul class="nav nav-tabs">
+    <li class="active" id="tab-groupId"><a aria-expanded="true" data-toggle="tab" href="#basicInformation">基本信息</a></li>
+    <li class="" id="tab-groupType"><a aria-expanded="false" data-toggle="tab" href="#subsAccount">订阅信息</a></li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade active in" id="basicInformation">
+        <div class="jumbotron">
+            <div id="alert" style="width: 60vw; max-width: 400px; margin: auto;"></div>
+            <form action="#" class="update-info-form" id="update-nickname-form" method="post">
+                <fieldset>
+                    <legend>修改昵称</legend>
+                    <input name="type" type="hidden" value="nickname">
+                    <div class="form-group" id="new-nickname-text-field">
+                        <label class="control-label" for="update-nickname-input">昵称</label>
+                        <div class="input-group">
+                            <input class="form-control" disabled id="update-nickname-input" name="newNickname"
+                                   placeholder='用户昵称' type="text">
+                            <span class="input-group-btn">
+                            <a class="btn btn-primary" id="edit-btn" type="button">编辑</a>
+                            <a class="btn btn-success" id="save-btn" style="display: none;" type="button">保存</a>
+                        </span>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <form action="#" class="update-info-form" id="update-password-form" method="post">
+                <fieldset>
+                    <legend>修改密码</legend>
+                    <input name="type" type="hidden" value="password">
+                    <div class="form-group" id="old-password-text-field">
+                        <label class="control-label" for="old-password-input">原密码</label>
+                        <input class="form-control" id="old-password-input" name="oldPassword" placeholder="输入原密码 ..."
+                               type="password">
+                    </div>
+                    <div class="form-group" id="new-password-text-field">
+                        <label class="control-label" for="new-password-input">新密码</label>
+                        <input class="form-control" id="new-password-input" name="newPassword" placeholder="输入新密码 ..."
+                               type="password">
+                    </div>
+                    <div class="form-group" id="repeat-password-text-field">
+                        <label class="control-label" for="repeat-password-input">确认新密码</label>
+                        <input class="form-control" id="repeat-password-input" placeholder="再次输入新密码 ..."
+                               type="password">
+                    </div>
+                    <div class="form-group" id="update-password-button">
+                        <a class="btn btn-primary">提交</a>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="subsAccount" style="background-color: #F5F5F5">
+        <div class="groupMemberTable">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr class="active">
+                    <th>服务名</th>
+                    <th>订阅账号</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th><a href="javascript:void(0);"><img alt="添加图标" height="28px" src="/images/add.svg"></a></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="active">
+                    <td>服务名</td>
+                    <td>账号</td>
+                    <td>开始时间</td>
+                    <td>到期时间</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="#">修改</a>
+                        <a class="btn btn-primary btn-sm" href="#">移除</a>
+                    </td>
+                <tr class="active">
+                    <td>服务名</td>
+                    <td>账号</td>
+                    <td>开始时间</td>
+                    <td>到期时间</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="#">修改</a>
+                        <a class="btn btn-primary btn-sm" href="#">移除</a>
+                    </td>
+                <tr class="active">
+                    <td>服务名</td>
+                    <td>账号</td>
+                    <td>开始时间</td>
+                    <td>到期时间</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="#">修改</a>
+                        <a class="btn btn-primary btn-sm" href="#">移除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/scripts/router/my-info.js"></script>

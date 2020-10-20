@@ -1,0 +1,262 @@
+.login-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.wrapper {
+    width: 80vw;
+    max-width: 350px;
+    background: white;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    box-shadow: 0 0 20px grey;
+}
+
+.wrapper > h3 {
+    text-align: center;
+    margin-bottom: 23px;
+}
+
+div.wrapper > form#form,
+div.form-group#buttons > * {
+    width: 60vw;
+    max-width: 200px;
+}
+
+div.form-group#buttons,
+#form-button,
+div.form-group#update-password-button,
+div.form-group#add-subs-account-form-buttons,
+div.form-group#update-subs-account-form-buttons {
+    text-align: center;
+}
+
+div.form-group#buttons > * {
+    margin-top: 23px;
+}
+
+#nav {
+    position: fixed;
+    left: 0;
+    height: 100%;
+    width: 20vw;
+    padding-top: 87px;
+    padding-bottom: 60px;
+    margin-top: -10vh;
+    box-shadow: 5px 0 5px #dddddd;
+}
+
+.navigation {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
+#nav-bar-toggle > span.icon-bar {
+    background-color: white;
+}
+
+#nav-bar-links > li > a > img {
+    margin-right: 5px;
+}
+
+#main-content {
+    margin: 100px 5vw 5vh 5vw;
+}
+
+#main-content > h3, #main-content > ul.add {
+    display: inline;
+}
+
+#main-content > ul.add > li > img {
+    height: 40px;
+    display: inline;
+    float: right;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px grey;
+}
+
+/*@media (max-width: 767px) {*/
+/*    #sidebar, #nav-bar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a {*/
+/*        display: none;*/
+/*    }*/
+/*    .content {*/
+/*        margin:100px 10vw 5vh 10vw;*/
+/*    }*/
+/*}*/
+
+@media (max-width: 525px) {
+    div.cards a.panel {
+        width: 80vw;
+        margin: 1vh auto;
+    }
+}
+
+li#groupDropdown {
+    display: inline;
+    float: right;
+}
+
+li#groupDropdown > ul {
+    left: auto;
+    right: 0;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cards a.panel {
+    text-decoration: none;
+    color: #666666;
+    width: 200px;
+    display: inline;
+    float: left;
+    margin: 1vh 1vw 1vh 1vw;
+}
+
+.cards div.panel {
+    color: #666666;
+    width: 70vw;
+    margin: 1vh 1vw 1vh 1vw;
+}
+
+.panel-default > .panel-heading.serviceId-1,
+button.btn.btn-primary.btn-lg.serviceId-1 {
+    color: white;
+    background-color: darkorange;
+}
+
+.panel-default > .panel-heading.serviceId-2,
+button.btn.btn-primary.btn-lg.serviceId-2 {
+    color: white;
+    background-color: darkgray;
+}
+
+.panel-default > .panel-heading.serviceId-3,
+button.btn.btn-primary.btn-lg.serviceId-3 {
+    color: white;
+    background-color: mediumpurple;
+}
+
+.panel-default > .panel-heading.serviceId-4,
+button.btn.btn-primary.btn-lg.serviceId-4 {
+    color: white;
+    background-color: #F25B20;
+}
+
+.panel-default > .panel-heading.serviceId-5,
+button.btn.btn-primary.btn-lg.serviceId-5 {
+    color: white;
+    background-color: deepskyblue;
+}
+
+.panel-default > .panel-heading.serviceId-6,
+button.btn.btn-primary.btn-lg.serviceId-6 {
+    color: white;
+    background-color: forestgreen;
+}
+
+p.lead {
+    padding: 20px;
+}
+
+#search-box > form > div {
+    margin: 0 10vw;
+}
+
+.search-result > div > div > div.panel-heading,
+#main-content > div > div.panel-heading {
+    height: 43px;
+}
+
+.groupNameInPanel, .groupInfoInPanel {
+    float: left;
+}
+
+.groupIdInPanel, .buttonInPanel {
+    float: right;
+}
+
+#search-type > div > form,
+#add-subs-form {
+    margin: auto 5vw;
+}
+
+button.btn.btn-primary.btn-lg {
+    margin: 5px;
+}
+
+#groupMemberTable > table,
+#groupMemberTable > table > thead > tr > th {
+    text-align: center;
+    font-size: 15px;
+}
+
+#create-group-form {
+    width: 50vw;
+    margin: 0 auto;
+}
+
+#form-button > div > .btn {
+    margin: 0 5px;
+}
+
+form.update-info-form > fieldset,
+form#add-subs-form > fieldset,
+form#update-subs-form > fieldset {
+    width: 60vw;
+    max-width: 470px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#new-nickname-text-field > div > span > a.btn {
+    margin-left: 23px;
+}
+
+form.update-info-form:first-child > fieldset {
+    margin-bottom: 30px;
+}
+
+form.update-info-form:last-child > fieldset {
+    margin-top: 30px;
+}
+
+#subsAccount > div.groupMemberTable {
+    padding: 20px 20px 1px;
+}
+
+#subsAccount > div.groupMemberTable > table,
+#subsAccount > div.groupMemberTable > table > thead > tr > th {
+    text-align: center;
+    font-size: 15px;
+}
+
+#subsAccount > div.groupMemberTable > table > tbody > tr > td:last-child > a {
+    margin: 5px 2px;
+}
+
+#update-password-button > a {
+    width: 40vw;
+    max-width: 150px;
+}
+
+div.form-group#add-subs-account-form-buttons > div > a.btn,
+div.form-group#update-subs-account-form-buttons > div > a.btn {
+    margin: auto 5px;
+    width: 20vw;
+    max-width: 100px;
+}

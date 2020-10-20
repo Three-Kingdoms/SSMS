@@ -1,0 +1,46 @@
+<h3>修改订阅账号</h3>
+<hr/>
+<div class="well bs-component">
+    <div id="alert">
+        <div class="alert alert-dismissible alert-danger">
+            <button class="close" data-dismiss="alert" onclick="removeAlert()" type="button">&times;</button>
+            <strong>结束时间</strong>不能早于<strong>开始时间</strong>！
+        </div>
+    </div>
+    <form action="#" class="form-horizontal"
+          id="update-subs-form" method="get">
+        <fieldset>
+            <input name="username" type="hidden" value="">
+            <input name="serviceId" type="hidden" value="">
+            <input name="oldSubsAccount" type="hidden" value="">
+            <div class="form-group" id="SubsAccount-text-field">
+                <label class="col-lg-2 control-label" for="newSubsAccount">订阅账号</label>
+                <div class="col-lg-10">
+                    <input class="form-control" id="newSubsAccount" name="newSubsAccount"
+                           placeholder="<%=oldSubsAccount%>"
+                           type="text">
+                </div>
+            </div>
+            <div class="form-group" id="startTime-text-field">
+                <label class="col-lg-2 control-label" for="startTime">服务开始时间</label>
+                <div class="col-lg-10">
+                    <input class="form-control" id="startTime" name="startTime" type="datetime-local">
+
+                </div>
+            </div>
+            <div class="form-group" id="endTime-text-field">
+                <label class="col-lg-2 control-label" for="endTime">服务结束时间</label>
+                <div class="col-lg-10">
+                    <input class="form-control" id="endTime" name="endTime" type="datetime-local">
+                </div>
+            </div>
+
+            <div class="form-group" id="update-subs-account-form-buttons">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <a class="btn btn-default" href="#">取消</a>
+                    <a class="btn btn-primary" onclick="">修改</a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
