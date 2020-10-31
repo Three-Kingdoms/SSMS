@@ -182,6 +182,11 @@ p.lead {
     height: 43px;
 }
 
+.subscription.panel {
+    margin: auto;
+    max-width: 768px;
+}
+
 .subscriptionNameInPanel, .groupNameInPanel, .groupInfoInPanel {
     float: left;
 }
