@@ -182,12 +182,21 @@ p.lead {
     height: 43px;
 }
 
-.groupNameInPanel, .groupInfoInPanel {
+.subscriptionNameInPanel, .groupNameInPanel, .groupInfoInPanel {
     float: left;
 }
 
-.groupIdInPanel, .buttonInPanel {
+.subscriptionIdInPanel, .groupIdInPanel, .buttonInPanel {
     float: right;
+}
+
+.subscriptionInfoInPanel {
+    text-align: center;
+    display: block;
+}
+
+.subscriptionInfoInPanel {
+    font-size: 24px;
 }
 
 #search-type > div > form,
@@ -197,6 +206,21 @@ p.lead {
 
 button.btn.btn-primary.btn-lg {
     margin: 5px;
+}
+
+#subscriptionInfoTable > table > tbody > tr > th {
+    width: 45%;
+    text-align: right;
+}
+
+#subscriptionInfoTable > table > tbody > tr > td {
+    width: 55%;
+    text-align: left;
+}
+
+#subscriptionInfoTable > table > tbody > tr:last-child > td > textarea {
+    resize: vertical;
+    background-color: #f5f5f5;
 }
 
 #groupMemberTable > table,
