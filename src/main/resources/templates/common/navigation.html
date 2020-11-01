@@ -1,3 +1,4 @@
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -27,7 +28,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" id="userDropdown">
-                    <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" role="button">用户昵称<span
+                    <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" role="button"><span
+                            th:text="${session.user.getNickname()}">用户昵称</span><span
                             class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="/logout">退出登录</a></li>
@@ -38,3 +40,4 @@
     </div>
 </nav>
 <script src="/scripts/navigation.js"></script>
+</html>

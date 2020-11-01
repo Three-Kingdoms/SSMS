@@ -1,19 +1,30 @@
-<html lang="zh">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>登录</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
           name="viewport">
     <link href="/styles/style.css" rel="stylesheet">
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
+    <script src="/scripts/jquery-3.5.1.min.js" type="text/javascript"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
 </head>
 <body style="background-image: url(https://api.xygeng.cn/Bing/);">
 <div class="login-container">
     <div class="wrapper">
         <h3>登录</h3>
-        <div id="alert"></div>
-        <form action="/login" id="form" method="post">
+        <div id="alert">
+            <div class="alert alert-dismissible alert-success" th:if="${#request.getAttribute('success')}">
+                <button class="close" data-dismiss="alert" type="button">&times;</button>
+                <strong th:text="${#request.getAttribute('success')}"></strong>
+            </div>
+            <div class="alert alert-dismissible alert-danger" th:if="${#request.getAttribute('fail')}">
+                <button class="close" data-dismiss="alert" type="button">&times;</button>
+                <strong th:text="${#request.getAttribute('fail')}"></strong>
+            </div>
+        </div>
+        <form action="user/verify/login" id="form" method="post">
             <div class="form-group" id="username-textfield">
-                <label class="control-label" for="username">用户名</label>
+                <label class="control-label" for="username">账户</label>
                 <input autofocus class="form-control input-lg" id="username" name="username" required type="text"/>
             </div>
             <div class="form-group" id="password-textfield">
@@ -27,5 +38,24 @@
         </form>
     </div>
 </div>
+<script type="text/javascript">
+    // function login(){
+    //     var uname = $("#username").val();
+    //     var pwd = $("#password").val();
+    //     $.post("user/login",{username:uname,password:pwd},function (data) {
+    //         window.location.href="index";
+    //     })
+    // }
+    //
+    // //当body中有按键按下时触发
+    // $("body").keydown(function (event) {
+    //     if (event.keyCode===13){
+    //         //触发登录按钮事件
+    //         register();
+    //     }
+    // });
+
+
+</script>
 </body>
 </html>

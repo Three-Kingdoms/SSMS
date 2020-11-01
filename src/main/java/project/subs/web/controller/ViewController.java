@@ -30,8 +30,12 @@ public class ViewController {
     }
 
     @RequestMapping({"/", "/index", "/my-subs"})
-    public String index() {
-        return "index";
+    public String index(HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            return "index";
+        } else {
+            return "redirect:/login";
+        }
     }
 
     @RequestMapping("/navigation")
