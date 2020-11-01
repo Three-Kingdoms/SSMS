@@ -15,7 +15,7 @@ public class Service {
     private String serviceName;
 
     @Column
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ServiceType serviceType;
 
     public Service() {

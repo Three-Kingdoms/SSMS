@@ -15,8 +15,9 @@ public class Group {
     @Column(nullable = false)
     private String groupName;
 
-    @Column(nullable = false)
-    private String groupType;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private GroupType groupType;
 
     @Column(nullable = false)
     private int userCount;
@@ -34,7 +35,7 @@ public class Group {
     public Group() {
     }
 
-    public Group(String groupName, String groupType, int userCount, Service service, String subsAccount) {
+    public Group(String groupName, GroupType groupType, int userCount, Service service, String subsAccount) {
         this.groupName = groupName;
         this.groupType = groupType;
         this.userCount = userCount;
@@ -42,7 +43,7 @@ public class Group {
         this.subsAccount = subsAccount;
     }
 
-    public Group(String groupName, String groupType, int userCount, Service service, String subsAccount, LocalDateTime createTime) {
+    public Group(String groupName, GroupType groupType, int userCount, Service service, String subsAccount, LocalDateTime createTime) {
         this.groupName = groupName;
         this.groupType = groupType;
         this.userCount = userCount;
@@ -67,11 +68,11 @@ public class Group {
         this.groupName = groupName;
     }
 
-    public String getGroupType() {
+    public GroupType getGroupType() {
         return groupType;
     }
 
-    public void setGroupType(String groupType) {
+    public void setGroupType(GroupType groupType) {
         this.groupType = groupType;
     }
 
