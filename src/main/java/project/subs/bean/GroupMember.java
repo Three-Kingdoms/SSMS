@@ -1,39 +1,70 @@
 package project.subs.bean;
 
+import javax.persistence.*;
+import java.security.PrivateKey;
 import java.time.LocalDateTime;
+import java.util.List;
 
+
+@Entity
+@Table(name = "groupmember")
 public class GroupMember {
-    boolean isAdmin = false;
-    LocalDateTime joinTime = LocalDateTime.now();
-    private int groupId;
-    private String username;
 
-    public GroupMember(int groupId, String username) {
-        this.groupId = groupId;
-        this.username = username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(nullable = false)
+    boolean isAdmin = false;
+
+    @Column(nullable = false)
+    LocalDateTime joinTime = LocalDateTime.now();
+
+    public GroupMember() {
     }
 
-    public GroupMember(int groupId, String username, boolean isAdmin, LocalDateTime joinTime) {
-        this.groupId = groupId;
-        this.username = username;
+    public GroupMember(Group group, User user) {
+        this.group = group;
+        this.user = user;
+    }
+
+    public GroupMember(Group group, User user, boolean isAdmin, LocalDateTime joinTime) {
+        this.group = group;
+        this.user = user;
         this.isAdmin = isAdmin;
         this.joinTime = joinTime;
     }
 
-    public int getGroupId() {
-        return groupId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public boolean isAdmin() {

@@ -1,40 +1,63 @@
 package project.subs.bean;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "group")
 public class Group {
-    private int groupId = -1;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+
+    @Column(nullable = false)
     private String groupName;
-    private String groupType;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private GroupType groupType;
+
+    @Column(nullable = false)
     private int userCount;
-    private int serviceId;
+
+    @ManyToOne
+    @JoinColumn(name="service_id")
+    private Service service;
+
+    @Column(nullable = false)
     private String subsAccount;
+
+    @Column(nullable = false)
     private LocalDateTime createTime = LocalDateTime.now();
 
-    public Group(String groupName, String groupType, int userCount, int serviceId, String subsAccount) {
+    public Group() {
+    }
+
+    public Group(String groupName, GroupType groupType, int userCount, Service service, String subsAccount) {
         this.groupName = groupName;
         this.groupType = groupType;
         this.userCount = userCount;
-        this.serviceId = serviceId;
+        this.service = service;
         this.subsAccount = subsAccount;
     }
 
-    public Group(int groupId, String groupName, String groupType, int userCount, int serviceId, String subsAccount, LocalDateTime createTime) {
-        this.groupId = groupId;
+    public Group(String groupName, GroupType groupType, int userCount, Service service, String subsAccount, LocalDateTime createTime) {
         this.groupName = groupName;
         this.groupType = groupType;
         this.userCount = userCount;
-        this.serviceId = serviceId;
+        this.service = service;
         this.subsAccount = subsAccount;
         this.createTime = createTime;
     }
 
-    public int getGroupId() {
-        return groupId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getGroupName() {
@@ -45,11 +68,11 @@ public class Group {
         this.groupName = groupName;
     }
 
-    public String getGroupType() {
+    public GroupType getGroupType() {
         return groupType;
     }
 
-    public void setGroupType(String groupType) {
+    public void setGroupType(GroupType groupType) {
         this.groupType = groupType;
     }
 
@@ -61,12 +84,12 @@ public class Group {
         this.userCount = userCount;
     }
 
-    public int getServiceId() {
-        return serviceId;
+    public Service getService() {
+        return service;
     }
 
-    public void setServiceId(int serviceId) {
-        this.serviceId = serviceId;
+    public void setService(Service service) {
+        this.service = service;
     }
 
     public String getSubsAccount() {
@@ -83,5 +106,18 @@ public class Group {
 
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id=" + id +
+                ", groupName='" + groupName + '\'' +
+                ", groupType='" + groupType + '\'' +
+                ", userCount=" + userCount +
+                ", service=" + service +
+                ", subsAccount='" + subsAccount + '\'' +
+                ", createTime=" + createTime +
+                '}';
     }
 }

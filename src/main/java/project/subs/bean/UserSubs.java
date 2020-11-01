@@ -1,47 +1,80 @@
 package project.subs.bean;
 
+import javax.persistence.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "usersubs")
 public class UserSubs {
-    private String username;
-    private int serviceId;
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name="service_id")
+    private Service service;
+
+    @Column(nullable = false,unique = true)
     private String subsAccount;
+
     private LocalDateTime startTime = null;
     private LocalDateTime endTime = null;
     private int duration = 0;
+    private String description;
 
-    public UserSubs(String username, int serviceId, String subsAccount, LocalDateTime startTime, LocalDateTime endTime) {
-        this.username = username;
-        this.serviceId = serviceId;
+    public UserSubs(User user, Service service, String subsAccount, LocalDateTime startTime, LocalDateTime endTime, String description) {
+        this.user = user;
+        this.service = service;
         this.subsAccount = subsAccount;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.description = description;
         if (Objects.equals(startTime, null) || Objects.equals(endTime, null)) this.duration = 0;
         else this.duration = (int) Duration.between(startTime, endTime).toDays();
     }
 
+
     public UserSubs(String username, int serviceId, String subsAccount) {
-        this.username = username;
-        this.serviceId = serviceId;
+        this.user = user;
+        this.service = service;
         this.subsAccount = subsAccount;
     }
 
-    public String getUsername() {
-        return username;
+    public UserSubs() {
+
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+
+    public Integer getId() {
+        return id;
     }
 
-    public int getServiceId() {
-        return serviceId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setServiceId(int serviceId) {
-        this.serviceId = serviceId;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Service getService() {
+        return service;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
     }
 
     public String getSubsAccount() {
@@ -76,15 +109,25 @@ public class UserSubs {
         this.duration = duration;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "UserSubs{" +
-                "username='" + username + '\'' +
-                ", serviceId=" + serviceId +
+                "id=" + id +
+                ", user=" + user +
+                ", service=" + service +
                 ", subsAccount='" + subsAccount + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", duration=" + duration +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
