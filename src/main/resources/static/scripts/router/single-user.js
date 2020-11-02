@@ -2,7 +2,6 @@ $(function () {
 
     let mainContent = $("#main-content");
 
-
     $("#groupDropdown > ul.dropdown-menu > li.add-subscription > a").on({
         click: function () {
             mainContent.load("/subscription/add");

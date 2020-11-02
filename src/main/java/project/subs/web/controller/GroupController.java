@@ -12,4 +12,9 @@ public class GroupController {
         return "group/group-info";
     }
 
+    @RequestMapping("/add")
+    public String addGroup() {
+        return "group/add-group";
+    }
+
 }
