@@ -1,5 +1,6 @@
 package project.subs.bean;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -15,7 +16,7 @@ public class User {
     @Column(nullable = false,unique = true)
     private String username;
 
-    @Column(nullable = false,unique = false)
+    @Column(nullable = false)
     private String password = null;
 
     @Column(nullable = false)
