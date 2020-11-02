@@ -3,21 +3,23 @@ package project.subs.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import project.subs.bean.User;
 import project.subs.service.IUserService;
+import project.subs.service.MyInfoService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserController {
 
     @Autowired
     private IUserService userService;
-//
-//    @Autowired
-//    private myInfoService myinfoservice;
+
+    @Autowired
+    private MyInfoService myInfoService;
 
     @RequestMapping("/verify/register")
     public String verify(User user, HttpServletRequest request) {
@@ -33,7 +35,7 @@ public class UserController {
 
     @RequestMapping("/verify/login")
     public String login(String username, String password, HttpServletRequest request, HttpSession session) {
-        System.out.println(username + " - " + password);
+
         User user = userService.findUserByUsername(username);
         if (user != null && user.getPassword().equals(password)) {
             session.setAttribute("user", user);
@@ -45,18 +47,24 @@ public class UserController {
     }
 
     @RequestMapping("/info")
-    public String myInfo() {
+    public String myInfo( ) {
         return "/user/my-info";
     }
-//
-//    @RequestMapping("/updateNickname")
-//    public void updateNickname(String newNickname) {
-//        myinfoservice.saveNewNickname(newNickname);
-//    }
-//
-//    @RequestMapping("/updatePassword")
-//    public void updatePassword(String newPassword) {
-//        myinfoservice.saveNewPassword(newPassword);
-//    }
+
+    @RequestMapping("/updateNickname")
+    @ResponseBody
+    public String updateNickname(HttpSession session, String newNickname) {
+        User user = (User) session.getAttribute("user");
+
+        return myInfoService.updateNickname(session, user.getId(),newNickname);
+
+    }
+
+    @RequestMapping("/updatePassword")
+    @ResponseBody
+    public String updatePassword(HttpSession session,String oldPassword, String newPassword) {
+        User user = (User) session.getAttribute("user");
+        return myInfoService.updatePassword(session,user.getId(),oldPassword,newPassword);
+    }
 
 }
