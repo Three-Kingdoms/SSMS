@@ -17,7 +17,7 @@
         <div class="panel-heading" th:text="${subs.service.serviceName}">服务名</div>
         <div class="panel-body">
             账号：<span th:text="${subs.subsAccount}">账号</span><br/>
-            到期时间：<span th:text="${#temporals.format(subs.endTime, 'yyyy-MM-dd')}">到期时间</span>
+            到期日：<span th:text="${#temporals.format(subs.endTime, 'yyyy-MM-dd')}">到期日</span>
         </div>
     </a>
 </div>

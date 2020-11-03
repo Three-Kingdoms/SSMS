@@ -2,6 +2,7 @@ package project.subs.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import project.subs.bean.User;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,11 +12,10 @@ import javax.servlet.http.HttpSession;
 public class ViewController {
 
     @RequestMapping("/login")
-    public String login() {
-        // 如果用户直接访问主页，先判断是否登录
-//        User user = (User) session.getAttribute("user");
-//        if (user == null) return "login";
-        return "user/login";
+    public String login(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) return "user/login";
+        else return "redirect:/";
     }
 
     @RequestMapping("/register")

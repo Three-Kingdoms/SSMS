@@ -1,14 +1,14 @@
 
 function removeAlert() {
     $("#alert").html("");
-    $("#new-nickname-textfield").removeClass("has-error");
-    $("#old-password-textfield").removeClass("has-error");
-    $("#new-password-textfield").removeClass("has-error");
-    $("#repeat-password-textfield").removeClass("has-error");
+    $("#new-nickname-text-field").removeClass("has-error");
+    $("#old-password-text-field").removeClass("has-error");
+    $("#new-password-text-field").removeClass("has-error");
+    $("#repeat-password-text-field").removeClass("has-error");
 }
 
 function showAlert(message) {
-    $("#alert")[0].innerHTML = `<div class ="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert" onclick="removeAlert()">&times;</button>${message}</div>`;
+    $("#alert")[0].innerHTML = `<div class ="alert alert-dismissible alert-danger"><a type="button" class="close" data-dismiss="alert" onclick="removeAlert()">&times;</a>${message}</div>`;
 }
 
 
@@ -33,8 +33,8 @@ $(function(){
         var newNickname = $("input[name= newNickname]").val();
 
         if(newNickname === ""){
-            showAlert("<p>新昵称不能为空!</p>");
-            $("#new-nickname-textfield").addClass("has-error");
+            showAlert("新昵称不能为空!");
+            $("#new-nickname-text-field").addClass("has-error");
         }else {
             $.post("user/updateNickname",{newNickname:newNickname},function(data){
                 if(data==="success") {
@@ -54,16 +54,16 @@ $(function(){
         if(oldPassword === "" || newPassword === "" || repeatPassword === ""){
             //判断输入的内容是否为空
             if (oldPassword === "") {
-                showAlert("<p>密码不能为空!</p>");
-                $("#old-password-textfield").addClass("has-error");
+                showAlert("密码不能为空!");
+                $("#old-password-text-field").addClass("has-error");
             } else{
                 if (newPassword === "") {
-                    showAlert("<p>新密码不能为空!</p>");
-                    $("#new-password-textfield").addClass("has-error");
+                    showAlert("新密码不能为空！");
+                    $("#new-password-text-field").addClass("has-error");
                 } else {
                     if (repeatPassword === "") {
-                        showAlert("<p>请再次输入密码!</p>");
-                        $("#repeat-password-textfield").addClass("has-error");
+                        showAlert("请再次输入密码！");
+                        $("#repeat-password-text-field").addClass("has-error");
                     }
                 }
             }
@@ -71,16 +71,16 @@ $(function(){
             if (newPassword !== repeatPassword) {
                 //判断两次密码是否一样
                 showAlert("<p>两次输入的新密码不一致！</p>");
-                $("#new-password-textfield").addClass("has-error");
-                $("#repeat-password-textfield").addClass("has-error");
+                $("#new-password-text-field").addClass("has-error");
+                $("#repeat-password-text-field").addClass("has-error");
             } else{
                 $.post("user/updatePassword",{oldPassword:oldPassword, newPassword:newPassword},function(data){
 
                     if(data==="success"){
-                        alert("修改成功");
+                        alert("修改成功！");
                         $("#my-info").load("user/info");
                     } else{
-                        showAlert("<p>原密码不正确！</p>");
+                        showAlert("原密码不正确！");
                     }
 
                 });

@@ -1,4 +1,3 @@
-
 <div id="my-info" xmlns:th="http://www.thymeleaf.org">
     <h3>我的信息</h3>
     <hr/>
@@ -26,7 +25,6 @@
                                 <input  class="form-control" disabled id="update-nickname-input" name="newNickname"
                                         th:attr="placeholder=${session.user.nickname}"
                                         type="text">
-
                                 <span class="input-group-btn" >
                                 <a class="btn btn-primary" id="edit-nickname" type="button">编辑</a>
                                 <a class="btn btn-success" id="save-nickname" style="display: none;" type="button">保存</a>
@@ -96,5 +94,5 @@
         </div>
     </div>
 </div>
-<script src="/scripts/user/my-info.js"></script>
+<script src="/scripts/router/my-info.js"></script>
 <script src="/scripts/user/update-myinfo.js"></script>
