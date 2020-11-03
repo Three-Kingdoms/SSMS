@@ -23,9 +23,7 @@ private SubsService subsService;
     @RequestMapping("/my")
     public String mySubscription(HttpSession session) {
         User user = (User) session.getAttribute("user");
-        System.out.println("user - " + user);
         List<UserSubs> userSubsList = subsService.findUserSubsByUserId(user.getId());
-        System.out.println("userSubsList - " + userSubsList);
         if (!userSubsList.isEmpty()) {
             List<UserSubs> singleSubs = new ArrayList<>();
             for (UserSubs subs: userSubsList) {
@@ -34,7 +32,6 @@ private SubsService subsService;
                 }
             }
             session.setAttribute("singleSubs", singleSubs);
-            System.out.println("singleSubs - " + singleSubs);
         }
         return "subscription/my-subscription";
     }

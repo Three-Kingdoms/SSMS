@@ -5,11 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.subs.bean.User;
+import project.subs.bean.UserSubs;
 import project.subs.service.IUserService;
 import project.subs.service.MyInfoService;
+import project.subs.service.SubsService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("user")
@@ -20,6 +23,9 @@ public class UserController {
 
     @Autowired
     private MyInfoService myInfoService;
+
+    @Autowired
+    private SubsService subsService;
 
     @RequestMapping("/verify/register")
     public String verify(User user, HttpServletRequest request) {
@@ -47,7 +53,10 @@ public class UserController {
     }
 
     @RequestMapping("/info")
-    public String myInfo( ) {
+    public String myInfo(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        List<UserSubs> userSubsList = subsService.findUserSubsByUserId(user.getId());
+        session.setAttribute("userSubsList", userSubsList);
         return "/user/my-info";
     }
 
