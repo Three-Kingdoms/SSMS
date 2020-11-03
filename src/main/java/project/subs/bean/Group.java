@@ -22,12 +22,10 @@ public class Group {
     @Column(nullable = false)
     private int userCount;
 
-    @ManyToOne
-    @JoinColumn(name="service_id")
-    private Service service;
 
-    @Column(nullable = false)
-    private String subsAccount;
+    @OneToOne
+    @JoinColumn(name = "subs_id")
+    private UserSubs userSubs;
 
     @Column(nullable = false)
     private LocalDateTime createTime = LocalDateTime.now();
@@ -35,20 +33,18 @@ public class Group {
     public Group() {
     }
 
-    public Group(String groupName, GroupType groupType, int userCount, Service service, String subsAccount) {
+    public Group(String groupName, GroupType groupType, int userCount, UserSubs userSubs) {
         this.groupName = groupName;
         this.groupType = groupType;
         this.userCount = userCount;
-        this.service = service;
-        this.subsAccount = subsAccount;
+        this.userSubs = userSubs;
     }
 
-    public Group(String groupName, GroupType groupType, int userCount, Service service, String subsAccount, LocalDateTime createTime) {
+    public Group(String groupName, GroupType groupType, int userCount, UserSubs userSubs, LocalDateTime createTime) {
         this.groupName = groupName;
         this.groupType = groupType;
         this.userCount = userCount;
-        this.service = service;
-        this.subsAccount = subsAccount;
+        this.userSubs = userSubs;
         this.createTime = createTime;
     }
 
@@ -84,20 +80,12 @@ public class Group {
         this.userCount = userCount;
     }
 
-    public Service getService() {
-        return service;
+    public UserSubs getUserSubs() {
+        return userSubs;
     }
 
-    public void setService(Service service) {
-        this.service = service;
-    }
-
-    public String getSubsAccount() {
-        return subsAccount;
-    }
-
-    public void setSubsAccount(String subsAccount) {
-        this.subsAccount = subsAccount;
+    public void setUserSubs(UserSubs userSubs) {
+        this.userSubs = userSubs;
     }
 
     public LocalDateTime getCreateTime() {
@@ -113,10 +101,9 @@ public class Group {
         return "Group{" +
                 "id=" + id +
                 ", groupName='" + groupName + '\'' +
-                ", groupType='" + groupType + '\'' +
+                ", groupType=" + groupType +
                 ", userCount=" + userCount +
-                ", service=" + service +
-                ", subsAccount='" + subsAccount + '\'' +
+                ", userSubs=" + userSubs +
                 ", createTime=" + createTime +
                 '}';
     }

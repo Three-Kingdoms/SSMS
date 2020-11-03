@@ -1,11 +1,18 @@
 package project.subs.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import project.subs.bean.User;
+import project.subs.service.SubsService;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/subscription")
 public class SubscriptionController {
+@Autowired
+private SubsService subsService;
 
     @RequestMapping("/my")
     public String mySubscription() {
@@ -18,7 +25,10 @@ public class SubscriptionController {
     }
 
     @RequestMapping("/multi")
-    public String multiUserSubscription() {
+    public String multiUserSubscription(HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        subsService.findGroupId(user);
+
         return "subscription/multi-user-subscription";
     }
 
