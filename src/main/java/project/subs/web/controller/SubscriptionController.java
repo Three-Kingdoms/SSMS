@@ -16,6 +16,7 @@ private SubsService subsService;
 
     @RequestMapping("/my")
     public String mySubscription() {
+
         return "subscription/my-subscription";
     }
 
