@@ -1,3 +1,4 @@
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <h3>我的订阅</h3>
 <ul class="add">
     <li class="dropdown" id="groupDropdown">
@@ -10,42 +11,15 @@
     </li>
 </ul>
 <hr/>
-<p class="lead">你还没有添加订阅信息</p>
-<div class="cards single-user">
-    <a class="panel panel-default" href="javascript:void(0);">
-        <div class="panel-heading ">订阅名</div>
+<p class="lead" th:if="${session.singleSubs.isEmpty()}">你还没有添加订阅信息</p>
+<div class="cards single-user" th:if="${!session.singleSubs.isEmpty()}" th:each="subs: ${session.singleSubs}">
+    <a class="panel panel-default" href="javascript:void(0);" th:attr="data-subs-id=${subs.id}">
+        <div class="panel-heading" th:text="${subs.service.serviceName}">服务名</div>
         <div class="panel-body">
-            服务名<br/>
-            到期时间
-        </div>
-    </a>
-    <a class="panel panel-default" href="javascript:void(0);">
-        <div class="panel-heading ">订阅名</div>
-        <div class="panel-body">
-            服务名<br/>
-            到期时间
-        </div>
-    </a>
-    <a class="panel panel-default" href="javascript:void(0);">
-        <div class="panel-heading ">订阅名</div>
-        <div class="panel-body">
-            服务名<br/>
-            到期时间
-        </div>
-    </a>
-    <a class="panel panel-default" href="javascript:void(0);">
-        <div class="panel-heading ">订阅名</div>
-        <div class="panel-body">
-            服务名<br/>
-            到期时间
-        </div>
-    </a>
-    <a class="panel panel-default" href="javascript:void(0);">
-        <div class="panel-heading ">订阅名</div>
-        <div class="panel-body">
-            服务名<br/>
-            到期时间
+            账号：<span th:text="${subs.subsAccount}">账号</span><br/>
+            到期时间：<span th:text="${#temporals.format(subs.endTime, 'yyyy-MM-dd')}">到期时间</span>
         </div>
     </a>
 </div>
 <script src="/scripts/router/single-user.js"></script>
+</html>

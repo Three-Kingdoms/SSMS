@@ -1,49 +1,42 @@
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <h3>订阅服务详情</h3>
 <hr/>
 <div class="panel panel-default subscription">
     <div class="panel-heading serviceId">
         <div>
-            <span class="subscriptionNameInPanel">订阅名</span>
-            <span class="subscriptionIdInPanel">订阅 ID：000</span>
+            <span class="subscriptionNameInPanel"></span>
+            <span class="subscriptionIdInPanel">订阅 ID：<span th:text="${#request.getAttribute('subsId')}">000</span></span>
         </div>
     </div>
     <div class="panel-body subscriptionPanel">
-        <span class="subscriptionInfoInPanel">服务名</span>
-        <!--        <span class="buttonInPanel">-->
-        <!--            <a class="btn btn-danger btn-lg"-->
-        <!--               href="#">解散小组</a>-->
-        <!--            <a class="btn btn-warning btn-lg"-->
-        <!--               href="#">退出小组</a>-->
-        <!--        </span>-->
+        <span class="subscriptionInfoInPanel" th:text="${#request.getAttribute('serviceName')}">服务名</span>
     </div>
     <div class="subscriptionInfoTable" id="subscriptionInfoTable">
         <table class="table table-striped table-hover">
-            <!--            <thead>-->
-            <!--            <tr class="active">-->
-            <!--                <th>职位</th>-->
-            <!--                <th>昵称</th>-->
-            <!--                <th>用户名</th>-->
-            <!--                <th>操作</th>-->
-            <!--            </thead>-->
             <tbody>
             <tr class="active">
                 <th>订阅账号</th>
-                <td>example@domain.com</td>
+                <td th:text="${#request.getAttribute('subsAccount')}">example@domain.com</td>
             </tr>
             <tr class="active">
                 <th>开始时间</th>
-                <td>2020-01-01</td>
+                <td th:text="${#request.getAttribute('startTime')}">2020-01-01</td>
             </tr>
             <tr class="active">
                 <th>结束时间</th>
-                <td>2020-12-31</td>
+                <td th:text="${#request.getAttribute('endTime')}">2020-12-31</td>
             </tr>
             <tr class="active">
                 <th><label for="SubscriptionNote">备注</label></th>
-                <td><textarea id="SubscriptionNote" readonly rows="3">这里是备注</textarea></td>
+                <td>
+                    <textarea id="SubscriptionNote" readonly rows="3" th:text="${#request.getAttribute('description')}">
+                        这里是备注
+                    </textarea>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
 <!--<script src="/scripts/router/.js"></script>-->
+</html>

@@ -21,7 +21,8 @@ $(function () {
 
     $("#main-content > div.cards.single-user > a.panel.panel-default").on({
         click: function () {
-            mainContent.load("/subscription/info");
+            let subsId = this.dataset.subsId;
+            mainContent.load("/subscription/info?subsId=" + subsId);
             $("#nav-bar-links").children().removeClass("active");
         }
     });
