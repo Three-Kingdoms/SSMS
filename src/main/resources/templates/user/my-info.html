@@ -76,16 +76,16 @@
                         <th><a href="javascript:void(0);"><img alt="添加图标" height="28px" src="/images/add.svg"></a></th>
                     </tr>
                     </thead>
-                    <tbody th:each="userSubs: ${session.userSubsList}">
-                    <tr class="active">
+                    <tbody th:each="userSubs:${session.userSubsList}">
+                    <tr class="active" >
                         <td th:text="${userSubs.service.serviceName}">服务名</td>
                         <td th:text="${userSubs.service.serviceType.toString()} == 'single' ? '个人订阅' : '多人订阅'">类型</td>
                         <td th:text="${userSubs.subsAccount}">账号</td>
                         <td th:text="${#temporals.format(userSubs.startTime, 'yyyy-MM-dd')}">开始时间</td>
                         <td th:text="${#temporals.format(userSubs.endTime, 'yyyy-MM-dd')}">到期时间</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="#"  id="modifySubsInfo">修改</a>
-                            <a class="btn btn-primary btn-sm" href="#">移除</a>
+                            <a class="btn btn-primary btn-sm modify" href="javascript:void(0);" id="modifySubsInfo">修改</a>
+                            <a class="btn btn-primary btn-sm remove" href="javascript:void(0);" th:attr="data-subs-id=${userSubs.id}">移除</a>
                         </td>
                     </tr>
                     </tbody>

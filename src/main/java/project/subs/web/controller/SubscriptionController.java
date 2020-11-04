@@ -68,6 +68,12 @@ private SubsService subsService;
         return "success";
     }
 
+    @RequestMapping("/remove")
+    @ResponseBody
+    public void removeSubscription(int subsId){
+        subsService.removeUserSubs(subsId);
+    }
+
     @RequestMapping("/multi")
     public String multiUserSubscription(HttpSession session) {
         User user = (User)session.getAttribute("user");
