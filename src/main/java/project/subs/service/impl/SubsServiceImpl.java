@@ -37,6 +37,11 @@ public class SubsServiceImpl implements SubsService {
     }
 
     @Override
+    public void removeUserSubs(int userSubsId) {
+        userSubsDao.deleteById(userSubsId);
+    }
+
+    @Override
     public List<UserSubs> findUserSubsByUserId(Integer userId) {
         return userSubsDao.findUserSubsByUserId(userId);
     }
