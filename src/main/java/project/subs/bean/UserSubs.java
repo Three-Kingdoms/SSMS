@@ -1,8 +1,11 @@
 package project.subs.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity
@@ -25,9 +28,11 @@ public class UserSubs {
     @Column(nullable = false,unique = true)
     private String subsAccount;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime startTime = null;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endTime = null;
-    private int duration = 0;
+    private int duration;
     private String description;
 
     public UserSubs(User user, Service service, String subsAccount, LocalDateTime startTime, LocalDateTime endTime, String description) {
@@ -37,12 +42,11 @@ public class UserSubs {
         this.startTime = startTime;
         this.endTime = endTime;
         this.description = description;
-        if (Objects.equals(startTime, null) || Objects.equals(endTime, null)) this.duration = 0;
-        else this.duration = (int) Duration.between(startTime, endTime).toDays();
+        if (this.startTime == null || this.endTime == null) this.duration = 0;
+        else this.duration = (int) Duration.between(this.startTime, this.endTime).toDays();
     }
 
-
-    public UserSubs(String username, int serviceId, String subsAccount) {
+    public UserSubs(User user, Service service, String subsAccount) {
         this.user = user;
         this.service = service;
         this.subsAccount = subsAccount;
@@ -51,7 +55,6 @@ public class UserSubs {
     public UserSubs() {
 
     }
-
 
     public Integer getId() {
         return id;
@@ -93,6 +96,10 @@ public class UserSubs {
         this.startTime = startTime;
     }
 
+//    public void setStartTime(String startTime) {
+//        this.startTime = LocalDateTime.parse(startTime + " 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00"));
+//    }
+
     public LocalDateTime getEndTime() {
         return endTime;
     }
@@ -100,6 +107,10 @@ public class UserSubs {
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
+
+//    public void setEndTime(String endTime) {
+//        this.endTime = LocalDateTime.parse(endTime + " 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00"));
+//    }
 
     public int getDuration() {
         return duration;
