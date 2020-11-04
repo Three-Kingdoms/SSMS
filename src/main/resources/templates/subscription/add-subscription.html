@@ -1,53 +1,71 @@
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <h3>添加订阅</h3>
 <hr/>
 <div class="well bs-component">
     <div id="alert"></div>
-    <form action="#" class="form-horizontal" id="create-group-form"
+    <form action="#" class="form-horizontal" id="create-subs-form"
           method="post">
         <fieldset>
-
-            <div class="form-group" id="subscriptionName-form">
-                <label class="col-lg-2 control-label" for="groupName-input">订阅名称</label>
-                <div class="col-lg-10">
-                    <input autofocus class="form-control" id="groupName-input" name="subscriptionName"
-                           placeholder="请输入新建的订阅名称 ..." required type="text">
-                </div>
-            </div>
 
             <div class="form-group" id="subscriptionType-form">
                 <label class="col-lg-2 control-label">订阅类型</label>
                 <div class="col-lg-10">
                     <div class="radio">
-                        <label>
+                        <label id="radio-single">
                             <input checked id="subscriptionType-single-radio" name="subscriptionType" type="radio"
-                                   value="单">
-                            单人订阅
+                                   value="single">
+                            个人订阅
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label id="radio-multi">
+                            <input id="subscriptionType-multi-radio" name="subscriptionType" type="radio"
+                                   value="multi">
+                            多人订阅
                         </label>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group" id="service-single-form">
-                <label class="col-lg-2 control-label" for="subs-single-select">选择服务</label>
-                <div class="col-lg-10">
-                    <select class="form-control" id="subs-single-select" name="serviceId" onchange="">
-                        <option value="-1">没有该类型的服务</option>
-                        <option value="1">服务名1</option>
-                        <option value="2">服务名2</option>
-                        <option value="3">服务名3</option>
+            <div class="form-group" id="single-serviceName-form">
+                <label class="col-lg-2 control-label" for="single-serviceName-select">选择服务</label>
+                <div class="col-lg-10" id="singleSubs">
+                    <select class="form-control" id="single-serviceName-select" name="singleServiceName">
+                        <option value="-1">请选择对应的服务</option>
+                        <option th:each="singleService: ${session.singleServiceList}" th:attr="value=${singleService.id}" th:text="${singleService.serviceName}">服务名</option>
                     </select>
                 </div>
             </div>
 
-            <div class="form-group subs-single-form" id="subs-single-form">
-                <label class="col-lg-2 control-label" for="subsAccount-single-select">订阅账号</label>
-                <div class="col-lg-10">
-                    <select class="form-control subs-single-select" id="subsAccount-single-select" name="subsAccount">
-                        <option value="-1">没有该类型服务对应的订阅账号</option>
-                        <option value="1">订阅账号1</option>
-                        <option value="2">订阅账号2</option>
-                        <option value="3">订阅账号3</option>
+            <div class="form-group" id="multi-serviceName-form" style="display: none">
+                <label class="col-lg-2 control-label" for="multi-serviceName-select">选择服务</label>
+                <div class="col-lg-10" id="multiSubs">
+                    <select class="form-control" id="multi-serviceName-select" name="multiServiceName">
+                        <option value="-1">请选择对应的服务</option>
+                        <option th:each="multiService:${session.multiServiceList}" th:attr="value=${multiService.id}" th:text="${multiService.serviceName}">服务名</option>
                     </select>
+                </div>
+            </div>
+
+
+            <div class="form-group" id="subscriptionName-form">
+                <label class="col-lg-2 control-label" for="subsName-input">订阅账号</label>
+                <div class="col-lg-10">
+                    <input class="form-control" id="subsName-input" name="subscriptionName"
+                           placeholder="请输入订阅服务的账号（邮箱、手机号等） ..." type="text">
+                </div>
+            </div>
+
+            <div class="form-group" id="date-form">
+                <label class="col-lg-2 control-label" for="startTime-input">开始时间</label>
+                <div class="col-lg-10">
+                    <input autofocus class="form-control" id="startTime-input" name="startTime"  required type="date">
+
+                </div>
+
+                <label class="col-lg-2 control-label" for="endTime-input">结束时间</label>
+                <div class="col-lg-10">
+                    <input autofocus class="form-control" id="endTime-input" name="endTime"  required type="date">
                 </div>
             </div>
 
@@ -61,10 +79,11 @@
             <div class="form-group" id="form-button">
                 <div class="col-lg-10 col-lg-offset-2">
                     <a class="btn btn-default" href="javascript:window.history.back();">取消</a>
-                    <input class="btn btn-primary" type="submit" value="创建"/>
+                    <a id="createSubs" class="btn btn-primary" type="button">创建</a>
                 </div>
             </div>
 
         </fieldset>
     </form>
 </div>
+<script src="/scripts/user/add-subsAccount.js"></script>

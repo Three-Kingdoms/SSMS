@@ -7,4 +7,11 @@ $(function () {
         }
     });
 
+    $("#modifySubsInfo").on({
+        click: function () {
+            $("#main-content").load("/subscription/add");
+            // $("#nav-bar-links").children().removeClass("active");
+        }
+    });
+
 });
