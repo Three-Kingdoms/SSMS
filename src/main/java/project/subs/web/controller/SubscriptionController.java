@@ -64,10 +64,8 @@ private SubsService subsService;
         if (userSubs.getStartTime() != null && userSubs.getEndTime() != null) {
             userSubs.setDuration((int) Duration.between(userSubs.getStartTime(), userSubs.getEndTime()).toDays());
         }
-        System.out.println(userSubs);
-//        System.out.println(subsName + "\n" + subsType + "\n" + serviceId + "\n" + startTime + "\n" + endTime + "\n" + description);
-//            subsService.saveUserSubs(userSubs);
-            return "success";
+        subsService.saveUserSubs(userSubs);
+        return "success";
     }
 
     @RequestMapping("/multi")
