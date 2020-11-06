@@ -1,9 +1,9 @@
 package project.subs.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.security.PrivateKey;
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 @Entity
@@ -26,6 +26,7 @@ public class GroupMember {
     boolean isAdmin = false;
 
     @Column(nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     LocalDateTime joinTime = LocalDateTime.now();
 
     public GroupMember() {
@@ -34,6 +35,17 @@ public class GroupMember {
     public GroupMember(Group group, User user) {
         this.group = group;
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "GroupMember{" +
+                "id=" + id +
+                ", group=" + group +
+                ", user=" + user +
+                ", isAdmin=" + isAdmin +
+                ", joinTime=" + joinTime +
+                '}';
     }
 
     public GroupMember(Group group, User user, boolean isAdmin, LocalDateTime joinTime) {

@@ -1,3 +1,4 @@
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <h3>多人订阅</h3>
 <ul class="add">
     <li class="dropdown" id="groupDropdown">
@@ -9,20 +10,14 @@
     </li>
 </ul>
 <hr/>
-<p class="lead">你还没有添加订阅信息</p>
+<!--    <p class="lead"  >你还没有添加订阅信息</p>-->
 <div class="cards multi-user">
-    <a class="panel panel-default" href="javascript:void(0);">
-        <div class="panel-heading ">订阅名</div>
+    <a class="panel panel-default" href="javascript:void(0);" th:attr="data-group=${multisubs.getGroup().getId()}"
+       th:each="multisubs:${session.multiSubs}">
+        <div class="panel-heading" th:text="'小组名:'+${multisubs.getGroup().getGroupName()}"></div>
         <div class="panel-body">
-            服务名<br/>
-            到期时间
-        </div>
-    </a>
-    <a class="panel panel-default" href="javascript:void(0);">
-        <div class="panel-heading ">订阅名</div>
-        <div class="panel-body">
-            服务名<br/>
-            到期时间
+            <span th:text="'服务名:'+${multisubs.getGroup().getUserSubs().getService().getServiceName()}"></span><br/>
+            <span th:text="'到期时间:'+${multisubs.getGroup().getUserSubs().getEndTime()}"></span>
         </div>
     </a>
 </div>

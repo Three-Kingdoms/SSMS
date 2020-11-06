@@ -2,9 +2,7 @@ package project.subs.service;
 
 import org.springframework.stereotype.Service;
 import project.subs.bean.GroupMember;
-import project.subs.bean.User;
 import project.subs.bean.UserSubs;
-
 
 import java.util.List;
 
@@ -16,6 +14,7 @@ public interface SubsService {
     List<UserSubs> findUserSubsByUserId(Integer userId);
     List<project.subs.bean.Service> findSingleServiceName();
     List<project.subs.bean.Service> findMultiServiceName();
-    List<GroupMember> findGroupId(User user);
+
+    List<GroupMember> findGroupMemberByUserId(Integer userId);
 
 }

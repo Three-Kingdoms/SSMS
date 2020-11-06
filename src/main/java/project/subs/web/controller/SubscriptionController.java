@@ -1,25 +1,15 @@
 package project.subs.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import project.subs.bean.Service;
-import project.subs.bean.ServiceType;
-import project.subs.bean.User;
-import project.subs.bean.UserSubs;
+import project.subs.bean.*;
 import project.subs.service.SubsService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +17,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/subscription")
 public class SubscriptionController {
-@Autowired
-private SubsService subsService;
+
+
+    @Autowired
+    private SubsService subsService;
 
 
     @RequestMapping("/my")
@@ -37,7 +29,7 @@ private SubsService subsService;
         List<UserSubs> userSubsList = subsService.findUserSubsByUserId(user.getId());
         if (!userSubsList.isEmpty()) {
             List<UserSubs> singleSubs = new ArrayList<>();
-            for (UserSubs subs: userSubsList) {
+            for (UserSubs subs : userSubsList) {
                 if (subs.getService().getServiceType().equals(ServiceType.single)) {
                     singleSubs.add(subs);
                 }
@@ -76,8 +68,11 @@ private SubsService subsService;
 
     @RequestMapping("/multi")
     public String multiUserSubscription(HttpSession session) {
-        User user = (User)session.getAttribute("user");
-        subsService.findGroupId(user);
+        User user = (User) session.getAttribute("user");
+        System.out.println("多人订阅" + user);
+        List<GroupMember> members = subsService.findGroupMemberByUserId(user.getId());
+        session.setAttribute("multiSubs", members);
+
         return "subscription/multi-user-subscription";
     }
 

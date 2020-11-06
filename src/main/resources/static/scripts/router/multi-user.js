@@ -4,7 +4,8 @@ $(function () {
 
     $("#main-content > div.cards.multi-user > a.panel.panel-default").on({
         click: function () {
-            mainContent.load("/group/info");
+            var groupId = this.dataset.group;
+            mainContent.load("/group/info?groupId=" + groupId);
             $("#nav-bar-links").children().removeClass("active");
         }
     });

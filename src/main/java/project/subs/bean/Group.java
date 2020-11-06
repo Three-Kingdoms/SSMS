@@ -1,5 +1,7 @@
 package project.subs.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -27,6 +29,7 @@ public class Group {
     private UserSubs userSubs;
 
     @Column(nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createTime = LocalDateTime.now();
 
     public Group() {

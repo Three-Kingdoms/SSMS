@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.subs.bean.GroupMember;
 import project.subs.bean.ServiceType;
-import project.subs.bean.User;
 import project.subs.bean.UserSubs;
 import project.subs.dao.GroupMemberDao;
 import project.subs.dao.ServiceDao;
-import project.subs.dao.UserDao;
 import project.subs.dao.UserSubsDao;
 import project.subs.service.SubsService;
 
@@ -25,6 +23,7 @@ public class SubsServiceImpl implements SubsService {
 
     @Autowired
     private ServiceDao serviceDao;
+
 
     @Override
     public UserSubs findUserSubsById(Integer id) {
@@ -61,12 +60,8 @@ public class SubsServiceImpl implements SubsService {
     }
 
     @Override
-    public List<GroupMember> findGroupId(User user) {
-        List<GroupMember> groupMembers = groupMemberDao.findByUser_Id(user.getId());
-        for (GroupMember groupMember: groupMembers) {
-            System.out.println(groupMember);
-        }
+    public List<GroupMember> findGroupMemberByUserId(Integer userId) {
 
-        return null;
+        return groupMemberDao.findGroupMembersByUserId(userId);
     }
 }

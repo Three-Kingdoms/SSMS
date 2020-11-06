@@ -14,8 +14,11 @@ public class ViewController {
     @RequestMapping("/login")
     public String login(HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if (user == null) return "user/login";
-        else return "redirect:/";
+        if (user == null) {
+            return "user/login";
+        } else {
+            return "redirect:/";
+        }
     }
 
     @RequestMapping("/register")

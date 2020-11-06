@@ -1,24 +1,38 @@
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <h3>小组信息</h3>
 <hr/>
+
 <div class="panel panel-default subscription">
     <div class="panel-heading serviceId">
         <div>
-            <span class="groupNameInPanel">小组名</span>
-            <span class="groupIdInPanel">小组号：000</span>
+            <!--            session.group为一个小组信息
+                            session.groupMembers小组所有成员
+            -->
+            <span class="groupNameInPanel" th:text="'小组名：'+${session.group.getGroupName()}"></span>
+            <span class="groupIdInPanel" th:text="'小组号：'+${session.group.getId()}"></span>
         </div>
     </div>
     <div class="panel-body">
         <span class="groupInfoInPanel">
-            服务名<br/>
-            人数：0/0
+            <span th:text="'服务名：'+${session.group.userSubs.getService().getServiceName()}">服务名</span><br/>
+            <span th:text="'人数：'+${session.groupMembers.size()}+'/'+${session.group.getUserCount()}">人数：0/0</span>
         </span>
         <span class="buttonInPanel">
-            <a class="btn btn-danger btn-lg"
-               href="#">解散小组</a>
-            <a class="btn btn-warning btn-lg"
-               href="#">退出小组</a>
+<!--            session.member为小组中单个成员，小组管理(isAdmin=ture)才可以解散小组，
+                                                小组成员(isAdmin=false只能腿出小组)
+  -->
+            <a class="btn btn-danger btn-lg" href="javascript:void(0);" id="dissolve"
+               th:attr="data-dissolve-id=${session.groupMembers.get(0).getGroup().getId()}"
+               th:if="${session.member.isAdmin()}==true">解散小组</a>
+
+            <a class="btn btn-warning btn-lg" href="javascript:void(0);" id="exit"
+               th:attr="data-exit-id=${session.member.getUser().getId()},
+               data-dissolve-id=${session.groupMembers.get(0).getGroup().getId()}"
+               th:if="${session.member.isAdmin()==false}"
+            >退出小组</a>
         </span>
     </div>
+
     <div class="groupMemberTable" id="groupMemberTable">
         <table class="table table-striped table-hover">
             <thead>
@@ -28,24 +42,22 @@
                 <th>用户名</th>
                 <th>操作</th>
             </thead>
-            <tbody>
+            <tbody th:each="groupmembers:${session.groupMembers}">
             <tr class="active">
-                <td>管理员</td>
-                <td>昵称</td>
-                <td>用户名</td>
-                <td></td>
-            </tr>
-            <tr class="active">
-                <td>普通成员</td>
-                <td>昵称</td>
-                <td>用户名</td>
+                <td th:if="${groupmembers.isAdmin()==true}">管理员</td>
+                <td th:if="${groupmembers.isAdmin()==false}">普通成员</td>
+                <td th:text="${groupmembers.getUser().getNickname()}">昵称</td>
+                <td th:text="${groupmembers.getUser().getId()}">用户名</td>
                 <td>
-                    <a class="btn btn-primary btn-sm"
-                       href="#">移除</a>
+                    <a class="btn btn-primary btn-sm groupMemberId" href="javascript:void(0);"
+                       th:attr="data-user-id=${groupmembers.getUser().getId()},data-group-id=${groupmembers.getGroup().getId()}"
+                       th:if="${groupmembers.isAdmin()==false and session.member.getUser().getId()==session.groupMembers.get(0).getUser().getId()}"
+                    >移除</a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+<script src="/scripts/group/remove-dissolve-members.js"/>
 

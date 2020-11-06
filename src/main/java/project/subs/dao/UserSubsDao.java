@@ -6,6 +6,7 @@ import project.subs.bean.UserSubs;
 import java.util.List;
 
 public interface UserSubsDao extends JpaRepository<UserSubs, Integer> {
-    UserSubs findUserSubsById(Integer id);
     List<UserSubs> findUserSubsByUserId(Integer userId);
+
+    UserSubs findUserSubsById(Integer id);
 }
