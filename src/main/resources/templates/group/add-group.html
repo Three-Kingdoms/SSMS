@@ -1,3 +1,4 @@
+<html lang="zh">
 <h3>添加小组</h3>
 <hr/>
 <ul class="nav nav-tabs">
@@ -10,7 +11,7 @@
 </ul>
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade active in" id="search-box">
-        <form action="/search" class="jumbotron" id="search-form"
+        <form class="jumbotron" id="search-form"
               method="post" role="search">
             <div class="form-group" id="search-field">
                 <div id="alert"></div>
@@ -25,37 +26,13 @@
             </div>
         </form>
         <div class="search-result">
-            <h4>搜索结果</h4>
-            <hr/>
-            <p class="lead" style="text-align: center">组号 <%=request.getAttribute("groupId")%> 不存在</p>
-            <h4>搜索结果</h4>
-            <hr/>
-            <div class="cards">
-                <div class="panel panel-default">
-                    <div class="panel-heading serviceId-?">
-                        <div>
-                            <span class="groupNameInPanel">小组名</span>
-                            <span class="groupIdInPanel">小组号：000</span>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <span class="groupInfoInPanel">
-                            服务名<br/>
-                            人数：0/0
-                        </span>
-                        <span class="buttonInPanel">
-                            <a class="btn btn-link disabled">已加入</a>
-                            <a class="btn btn-link disabled">人数已满</a>
-                            <a class="btn btn-success btn-lg" href="#">申请加入</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            <!--            搜索结果-->
         </div>
     </div>
+
     <div class="tab-pane fade" id="search-type">
         <div class="jumbotron">
-            <form action="#" class="form-horizontal" method="post">
+            <form class="form-horizontal" method="post">
                 <fieldset>
                     <input name="searchType" type="hidden" value="serviceId"/>
                     <div class="form-group">
@@ -109,3 +86,4 @@
         </div>
     </div>
 </div>
+<script src="/scripts/group/add-group.js"/>

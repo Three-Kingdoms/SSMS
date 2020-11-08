@@ -10,4 +10,6 @@ public interface GroupMemberService {
     void deleteGroupMemberByUserIdAndGroupId(Integer userId, Integer groupId);
 
     GroupMember findGroupMemberByUserIdAndGroupId(Integer userId, Integer groupId);
+
+    void save(GroupMember groupMember);
 }

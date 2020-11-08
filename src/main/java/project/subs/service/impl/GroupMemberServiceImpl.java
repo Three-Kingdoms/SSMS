@@ -28,4 +28,11 @@ public class GroupMemberServiceImpl implements GroupMemberService {
     public GroupMember findGroupMemberByUserIdAndGroupId(Integer userId, Integer groupId) {
         return groupMemberDao.findGroupMemberByUserIdAndGroupId(userId, groupId);
     }
+
+    @Override
+    public void save(GroupMember groupMember) {
+        groupMemberDao.save(groupMember);
+    }
+
+
 }

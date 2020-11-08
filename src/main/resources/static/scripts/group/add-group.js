@@ -21,10 +21,33 @@ function checkEmpty() {
         showAlert('组号不能为空！');
         document.getElementById('search-field').classList.add("has-warning");
     } else {
-        // removeAlert();
-        document.getElementById('search-form').submit();
+        let groupId = $("#search-input").val();
+        $(".search-result").load("group/find?groupId=" + groupId);
+
     }
 }
+
+//退出小组
+$("#exit").on('click', function () {
+    //从哪个小组退出
+    let groupId = this.dataset.dissolveId;
+    let userId = this.dataset.exitId;
+    alert("退出小组成功");
+    $.get("group/exit", {userId: userId, groupId: groupId}, function () {
+        $("#main-content").load("subscription/multi", function () {
+            }
+        )
+    });
+});
+
+function addGroup() {
+    let groupId1 = $("#add-group").data("group-id");
+    alert(groupId1)
+    $.get("group/addGroup", {groupId: groupId1}, function () {
+        $('.search-result').load("group/success");
+    })
+}
+
 
 function showAlert(message) {
     document.getElementById('alert').innerHTML =
@@ -49,3 +72,4 @@ function showServices() {
     }
     // document.getElementsByClassName('search-result')[1].innerHTML = '';
 }
+

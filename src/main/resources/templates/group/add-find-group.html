@@ -1,0 +1,31 @@
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<h4>搜索结果</h4>
+<hr/>
+<p class="lead" style="text-align: center" th:if="${#session.getAttribute('exitGroup')==null}">该小组不存在</p>
+<hr/>
+<div class="cards" th:if="${#session.getAttribute('exitGroup')!=null}">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div>
+                <span class="groupNameInPanel" th:text="'小组名：'+${session.exitGroup.getGroupName()}">小组名</span>
+                <span class="groupIdInPanel" th:text="'小组号：'+${session.exitGroup.getId()}">小组号：000</span>
+            </div>
+        </div>
+        <div class="panel-body">
+             <span class="groupInfoInPanel">
+                  <span th:text="'服务名：'+${session.exitGroup.getUserSubs().getService().getServiceName()}">服务名</span><br/>
+                  <span th:text="'人数：'+${session.exitMembers.size()}+'/'+${session.exitGroup.getUserCount()}">人数：0/0</span>
+             </span>
+
+            <span class="buttonInPanel">
+                <a class="btn btn-link disabled" th:if="${#session.getAttribute('myself')!=null}">已加入</a>
+                <a class="btn btn-link disabled"
+                   th:if="${session.exitGroup.getUserCount()==session.exitMembers.size()}">人数已满</a>
+                <a class="btn btn-success btn-lg" id="add-group"
+                   onclick="addGroup()" th:attr="data-group-id=${session.exitGroup.getId()}"
+                   th:if="${session.exitMembers.size()<session.exitGroup.getUserCount()
+                    && #session.getAttribute('myself')==null}">申请加入</a>
+            </span>
+        </div>
+    </div>
+</div>

@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.subs.bean.Group;
 import project.subs.dao.GroupDao;
-import project.subs.service.GroupSerivceDao;
+import project.subs.service.GroupService;
 
 @Service
-public class GroupServiceImpl implements GroupSerivceDao {
+public class GroupServiceImpl implements GroupService {
 
     @Autowired
     private GroupDao groupDao;
