@@ -1,30 +1,29 @@
-let singleServiceForm = $("#single-serviceName-form");
-let multiServiceForm = $("#multi-serviceName-form");
-let subscriptionNameForm = $("#subscriptionName-form");
+$(function () {
 
-function removeAlert() {
-    $("#alert").html("");
-    singleServiceForm.removeClass("has-error");
-    multiServiceForm.removeClass("has-error");
-    subscriptionNameForm.removeClass("has-error");
-    $("#startTime-textfield").removeClass("has-error");
-    $("#endTime-textfield").removeClass("has-error");
-}
+    let singleServiceForm = $("#single-serviceName-form");
+    let multiServiceForm = $("#multi-serviceName-form");
+    let subscriptionNameForm = $("#subscriptionName-form");
 
-function showAlert(message) {
-    $("#alert")[0].innerHTML = `<div class ="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert" onclick="removeAlert()">&times;</button>${message}</div>`;
-}
+    function removeAlert() {
+        $("#alert").html("");
+        singleServiceForm.removeClass("has-error");
+        multiServiceForm.removeClass("has-error");
+        subscriptionNameForm.removeClass("has-error");
+        $("#startTime-textfield").removeClass("has-error");
+        $("#endTime-textfield").removeClass("has-error");
+    }
 
-$(function (){
-
+    function showAlert(message) {
+        $("#alert")[0].innerHTML = `<div class ="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert" onclick="removeAlert()">&times;</button>${message}</div>`;
+    }
 
     $("#radio-single").on("click", function () {
-        singleServiceForm.css("display","");
-        multiServiceForm.css("display","none");
+        singleServiceForm.css("display", "");
+        multiServiceForm.css("display", "none");
     });
     $("#radio-multi").on("click", function () {
-        singleServiceForm.css("display","none");
-        multiServiceForm.css("display","");
+        singleServiceForm.css("display", "none");
+        multiServiceForm.css("display", "");
     });
 
 

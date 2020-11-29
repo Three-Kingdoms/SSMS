@@ -9,4 +9,10 @@ public interface UserSubsDao extends JpaRepository<UserSubs, Integer> {
     List<UserSubs> findUserSubsByUserId(Integer userId);
 
     UserSubs findUserSubsById(Integer id);
+
+    List<UserSubs> findUserSubsByServiceIdAndUserId(Integer serviceId, Integer userId);
+
+    UserSubs findUserSubsByUserIdAndServiceIdAndSubsAccount(Integer userId, Integer serviceId, String subsAccount);
+
+    List<UserSubs> findUserSubsByServiceId(Integer serviceId);
 }

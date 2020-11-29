@@ -48,15 +48,13 @@ public class SubsServiceImpl implements SubsService {
     @Override
     public List<project.subs.bean.Service> findSingleServiceName() {
         ServiceType serviceType= ServiceType.single;
-        List<project.subs.bean.Service> singleServiceList = serviceDao.findByServiceType(serviceType);
-        return singleServiceList;
+        return serviceDao.findByServiceType(serviceType);
     }
 
     @Override
     public List<project.subs.bean.Service> findMultiServiceName() {
-        ServiceType serviceType= ServiceType.multi;
-        List<project.subs.bean.Service> multiServiceList = serviceDao.findByServiceType(serviceType);
-        return multiServiceList;
+        ServiceType serviceType = ServiceType.multi;
+        return serviceDao.findByServiceType(serviceType);
     }
 
     @Override
@@ -64,4 +62,21 @@ public class SubsServiceImpl implements SubsService {
 
         return groupMemberDao.findGroupMembersByUserId(userId);
     }
+
+    @Override
+    public List<UserSubs> findUserSubsByServiceIdAndUserId(Integer serviceId, Integer userId) {
+        return userSubsDao.findUserSubsByServiceIdAndUserId(serviceId, userId);
+    }
+
+    @Override
+    public UserSubs findUserSubsByUserIdAndServiceIdAndSubsAccount(Integer userId, Integer serviceId, String subsAccount) {
+        return userSubsDao.findUserSubsByUserIdAndServiceIdAndSubsAccount(userId, serviceId, subsAccount);
+    }
+
+    @Override
+    public List<UserSubs> findUserSubsByServiceId(Integer serviceId) {
+        return userSubsDao.findUserSubsByServiceId(serviceId);
+    }
+
+
 }

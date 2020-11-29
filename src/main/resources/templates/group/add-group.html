@@ -1,5 +1,5 @@
 <html lang="zh">
-<h3>添加小组</h3>
+<h3>加入多人小组</h3>
 <hr/>
 <ul class="nav nav-tabs">
     <li class="active" id="tab-groupId" onclick="showSearchBox()">
@@ -36,53 +36,23 @@
                 <fieldset>
                     <input name="searchType" type="hidden" value="serviceId"/>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" for="select">订阅服务类型</label>
-                        <div class="col-lg-10">
-                            <select class="form-control" disabled id="select" name="serviceType"
+                        <label class="col-lg-2 control-label" for="select">订阅服务名</label>
+                        <div class="col-lg-10" xmlns:th="http://www.thymeleaf.org">
+                            <select class="form-control" id="select" name="serviceType"
                                     onchange="showServices()">
-                                <option selected value="multi">多人订阅</option>
+                                <option value="-1">请选择对应的服务</option>
+                                <option th:attr="value=${service.id}"
+                                        th:each="service:${session.serviceList}"
+                                        th:text="${service.serviceName}"></option>
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group" id="services-multi">
-                        <label class="col-lg-2 control-label" for="multi">多人订阅服务名</label>
-                        <div class="col-lg-10" id="multi">
-                            <button class="btn btn-primary btn-lg serviceId-?" name="serviceId"
-                                    type="submit" value="?">服务名
-                            </button>
+                            <button class="btn btn-primary btn-lg" id="searchGroup">搜索</button>
                         </div>
                     </div>
                 </fieldset>
             </form>
         </div>
-        <div class="search-result">
-            <h4>搜索结果</h4>
-            <hr/>
-            <p class="lead" style="text-align: center">
-                服务“服务名”不存在
-            </p>
-            <h4>搜索结果</h4>
-            <hr/>
-            <div class="cards">
-                <div class="panel panel-default">
-                    <div class="panel-heading serviceId-？">
-                        <div>
-                            <span class="groupNameInPanel">小组名</span>
-                            <span class="groupIdInPanel">小组号：000</span>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <span class="groupInfoInPanel">
-                            服务名<br/>
-                            人数：0/0
-                        </span>
-                        <span class="buttonInPanel">
-                            <a class="btn btn-link disabled">人数已满</a>
-                            <a class="btn btn-success btn-lg" href="#">申请加入</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
+        <div class="search-result" id="search-result2">
+            <!--搜索结果-->
         </div>
     </div>
 </div>

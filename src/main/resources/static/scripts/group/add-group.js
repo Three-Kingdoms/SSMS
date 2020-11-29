@@ -40,6 +40,19 @@ $("#exit").on('click', function () {
     });
 });
 
+/**
+ * 按照服务号去查所有该服务的账号
+ */
+$("#searchGroup").on('click', function () {
+    let serviceId = $("#select").val();
+    alert(serviceId);
+    $.get("group/findGroupByServiceId", {serviceId: serviceId}, function () {
+        $("#search-result2").load("group/success")
+    });
+
+
+})
+
 function addGroup() {
     let groupId1 = $("#add-group").data("group-id");
     alert(groupId1)

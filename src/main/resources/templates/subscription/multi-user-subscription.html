@@ -5,12 +5,13 @@
         <img alt="添加图标" aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown"
              role="button" src="../images/add.svg">
         <ul class="dropdown-menu" role="menu">
-            <li class="add-subscription"><a href="javascript:void(0);">添加多人订阅</a></li>
+            <li class="add-subscription"><a href="javascript:void(0);">加入多人订阅小组</a></li>
+            <li class="add-subscription"><a href="javascript:void(0);">创建多人订阅小组</a></li>
         </ul>
     </li>
 </ul>
 <hr/>
-<!--    <p class="lead"  >你还没有添加订阅信息</p>-->
+<p class="lead" th:if="${session.multiSubs.size()==0}">你还没有添加订阅信息</p>
 <div class="cards multi-user">
     <a class="panel panel-default" href="javascript:void(0);" th:attr="data-group=${multisubs.getGroup().getId()}"
        th:each="multisubs:${session.multiSubs}">

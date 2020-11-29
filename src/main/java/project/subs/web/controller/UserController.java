@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.subs.bean.User;
 import project.subs.bean.UserSubs;
-import project.subs.service.IUserService;
 import project.subs.service.MyInfoService;
 import project.subs.service.SubsService;
+import project.subs.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,7 +19,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @Autowired
     private MyInfoService myInfoService;

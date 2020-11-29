@@ -17,4 +17,14 @@ $(function () {
         }
     });
 
+    /**
+     * 创建多人小组
+     */
+    $("#groupDropdown > ul > li:nth-child(2) > a").on({
+        click: function () {
+            mainContent.load("/group/createGroup");
+            $("#nav-bar-links").children().removeClass("active");
+        }
+    });
+
 });
