@@ -8,13 +8,26 @@ import java.util.List;
 
 @Service
 public interface SubsService {
+
     UserSubs findUserSubsById(Integer id);
+
     void saveUserSubs(UserSubs userSubs);
+
     void removeUserSubs(int userSubsId);
+
     List<UserSubs> findUserSubsByUserId(Integer userId);
+
     List<project.subs.bean.Service> findSingleServiceName();
+
     List<project.subs.bean.Service> findMultiServiceName();
 
     List<GroupMember> findGroupMemberByUserId(Integer userId);
+
+    List<UserSubs> findUserSubsByServiceIdAndUserId(Integer serviceId, Integer userId);
+
+    UserSubs findUserSubsByUserIdAndServiceIdAndSubsAccount(Integer userId, Integer serviceId, String subsAccount);
+
+    List<UserSubs> findUserSubsByServiceId(Integer serviceId);
+
 
 }

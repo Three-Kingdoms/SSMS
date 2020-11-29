@@ -1,9 +1,8 @@
 package project.subs.service;
 
 import project.subs.bean.User;
-import project.subs.bean.UserSubs;
 
-public interface IUserService {
+public interface UserService {
     User findUserByUsername(String username);
 
 

@@ -1,0 +1,10 @@
+<label class="col-lg-2 control-label serviceId-?"
+       for="subsAccount-multi-id?-select">共享订阅账号</label>
+<div class="col-lg-10" id="subsAccounts" xmlns:th="http://www.thymeleaf.org">
+    <select class="form-control subs-multi-select" id="subsAccount-multi-id?-select"
+            name="subsAccount" th:if="${#session.getAttribute('subsAccount')}!=null">
+        <option th:each="account:${session.subsAccount}"
+                th:text="${account.subsAccount}">订阅账号1
+        </option>
+    </select>
+</div>

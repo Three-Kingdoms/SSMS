@@ -1,8 +1,11 @@
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <h3>创建多人订阅小组</h3>
 <hr/>
 <div class="well bs-component">
     <div id="alert"></div>
-    <form action="#" class="form-horizontal" id="create-group-form"
+    <p style="font-size: large" th:if="${session.serviceName.size()}==0">你还没有多人订阅，请多人订阅后再创建小组</p>
+    <form class="form-horizontal" id="create-group-form"
+          th:if="${session.serviceName.size()}!=0"
           method="post">
         <fieldset>
             <div class="form-group" id="groupName-form">
@@ -27,37 +30,17 @@
             <div class="form-group" id="service-multi-form">
                 <label class="col-lg-2 control-label" for="subs-multi-select">选择服务</label>
                 <div class="col-lg-10">
-                    <select class="form-control" id="subs-multi-select" name="serviceId" onchange="formatForm()">
-                        <option value="-1">没有该类型的服务</option>
-                        <option value="1">服务名1</option>
-                        <option value="2">服务名2</option>
-                        <option value="3">服务名3</option>
+                    <select class="form-control"
+                            id="subs-multi-select" name="serviceId">
+                        <option value="-1">--请选择服务--</option>
+                        <option th:each="serviceName:${session.serviceName}"
+                                th:text="${serviceName}">服务1
+                        </option>
                     </select>
                 </div>
             </div>
 
-            <div class="form-group subs-multi-form" id="subs-multi-form">
-                <label class="col-lg-2 control-label" for="subsAccount-multi-select">共享订阅账号</label>
-                <div class="col-lg-10">
-                    <select class="form-control subs-multi-select" id="subsAccount-multi-select" name="subsAccount">
-                        <option value="-1">没有该类型服务对应的订阅账号</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group subs-multi-form" id="subs-multi-id?-form">
-                <label class="col-lg-2 control-label serviceId-?"
-                       for="subsAccount-multi-id?-select">共享订阅账号</label>
-                <div class="col-lg-10">
-                    <select class="form-control subs-multi-select" id="subsAccount-multi-id?-select"
-                            name="subsAccount">
-                        <option value="-1">没有该类型服务对应的订阅账号</option>
-                        <option value="1">订阅账号1</option>
-                        <option value="2">订阅账号2</option>
-                        <option value="3">订阅账号3</option>
-                    </select>
-                </div>
-            </div>
+            <div class="form-group" id="subsAccount-select"></div>
 
             <div class="form-group" id="maxMember-form">
                 <label class="col-lg-2 control-label" for="maxMember-input">小组人数上限</label>
@@ -79,3 +62,4 @@
     </form>
     <script>formatForm()</script>
 </div>
+<script src="scripts/group/create-group.js"></script>
