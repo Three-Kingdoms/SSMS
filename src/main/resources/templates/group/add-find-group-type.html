@@ -1,23 +1,54 @@
-<html lang="zh">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <h4>搜索结果</h4>
 <hr/>
-<div class="cards">
-    <div class="panel panel-default">
-        <div class="panel-heading serviceId-？">
+<p class="lead" style="text-align: center" th:if="${#session.getAttribute('multiGroups')==null}">该小组不存在</p>
+<!--session.setAttribute("multiGroups",multiGroups);  此服务的所有小组-->
+<!--session.setAttribute("existsGroupList", existsGroup); 已加入的小组-->
+<div class="cards"  th:if="${#session.getAttribute('joinedGroupList')!=null}">
+    <div class="panel panel-default" th:each="groups:${session.joinedGroupList}" >
+        <div class="panel-heading" >
             <div>
-                <span class="groupNameInPanel">小组名</span>
-                <span class="groupIdInPanel">小组号：000</span>
+                <span class="groupNameInPanel" th:text="'小组名：'+${groups.getGroupName()}">小组名</span>
+                <span class="groupIdInPanel" th:text="'小组号：'+${groups.getId()}">小组号：000</span>
+            </div>
+        </div>
+        <div class="panel-body" >
+             <span class="groupInfoInPanel" >
+                  <span th:text="'服务名：'+${groups.getUserSubs().getService().serviceName}">服务名</span><br/>
+<!--                  <span th:each="haveMembers:${session.joinedGroupHaveMembers}" th:text="'人数：'+${haveMembers.get(0).}+'/'+${groups.getUserCount()}">人数：0/0</span>-->
+             </span>
+
+            <span class="buttonInPanel">
+                <a class="btn btn-link disabled" >已加入</a>
+<!--                <a class="btn btn-link disabled">人数已满</a>-->
+<!--                <a class="btn btn-success btn-lg" id="add-group"-->
+<!--                   th:each="group:${session.multiGroups}"-->
+<!--                   th:if="${exit.group.getId()!=group.getId()}"-->
+<!--                   onclick="addGroup()">申请加入</a>-->
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="cards" th:if="${#session.getAttribute('notJoinedGroupList')!=null}">
+    <div class="panel panel-default" th:each="group:${session.notJoinedGroupList}">
+        <div class="panel-heading">
+            <div>
+                <span class="groupNameInPanel" th:text="'小组名：'+${group.getGroupName()}">小组名</span>
+                <span class="groupIdInPanel" th:text="'小组号：'+${group.getId()}">小组号：000</span>
             </div>
         </div>
         <div class="panel-body">
-                        <span class="groupInfoInPanel">
-                            服务名<br/>
-                            人数：0/0
-                        </span>
-            <span class="buttonInPanel">
-                            <a class="btn btn-link disabled">人数已满</a>
-                            <a class="btn btn-success btn-lg" href="#">申请加入</a>
-                        </span>
+             <span class="groupInfoInPanel">
+                  <span th:text="'服务名：'+${group.getUserSubs().getService().serviceName}">服务名</span><br/>
+<!--                  <span th:text="'人数：'+'/'+${group.getUserCount()}">人数：0/0</span>-->
+             </span>
+
+            <span class="buttonInPanel" >
+                <a class="btn btn-success btn-lg" id="add-group"
+                   th:attr="data-group-id=${group.getId()}"
+                   onclick="addGroup()">申请加入</a>
+            </span>
         </div>
     </div>
 </div>

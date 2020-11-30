@@ -49,15 +49,22 @@ public class SubscriptionController {
         return "subscription/add-subscription";
     }
 
-    @RequestMapping("/create")
+    @RequestMapping({"/create", "/modify"})
     @ResponseBody
-    public String createSubscription(HttpSession session, UserSubs userSubs) {
+    public String saveSubscription(HttpSession session, UserSubs userSubs) {
         userSubs.setUser((User) session.getAttribute("user"));
         if (userSubs.getStartTime() != null && userSubs.getEndTime() != null) {
             userSubs.setDuration((int) Duration.between(userSubs.getStartTime(), userSubs.getEndTime()).toDays());
         }
         subsService.saveUserSubs(userSubs);
         return "success";
+    }
+
+    @RequestMapping("/modify-page")
+    public String modifyPage(int subsId, HttpSession session) {
+        UserSubs userSubs = subsService.findUserSubsById(subsId);
+        session.setAttribute("userSubs", userSubs);
+        return "subscription/modify-subscription";
     }
 
     @RequestMapping("/remove")

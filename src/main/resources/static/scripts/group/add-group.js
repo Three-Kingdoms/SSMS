@@ -45,17 +45,16 @@ $("#exit").on('click', function () {
  */
 $("#searchGroup").on('click', function () {
     let serviceId = $("#select").val();
-    alert(serviceId);
-    $.get("group/findGroupByServiceId", {serviceId: serviceId}, function () {
-        $("#search-result2").load("group/success")
-    });
+    // alert(serviceId);
+    $("#search-result2").load("group/findGroupByServiceId?serviceId="+serviceId);
+
 
 
 })
 
 function addGroup() {
     let groupId1 = $("#add-group").data("group-id");
-    alert(groupId1)
+    // alert(groupId1)
     $.get("group/addGroup", {groupId: groupId1}, function () {
         $('.search-result').load("group/success");
     })

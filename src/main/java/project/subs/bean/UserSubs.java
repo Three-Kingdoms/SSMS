@@ -35,15 +35,27 @@ public class UserSubs {
     private int duration;
     private String description;
 
+    public UserSubs(Integer id, User user, Service service, String subsAccount, LocalDateTime startTime, LocalDateTime endTime, int duration, String description) {
+        this.id = id;
+        this.user = user;
+        this.service = service;
+        this.subsAccount = subsAccount;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        if (this.startTime == null || this.endTime == null) this.duration = 0;
+        else this.duration = (int) Duration.between(this.startTime, this.endTime).toDays();
+        this.description = description;
+    }
+
     public UserSubs(User user, Service service, String subsAccount, LocalDateTime startTime, LocalDateTime endTime, String description) {
         this.user = user;
         this.service = service;
         this.subsAccount = subsAccount;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.description = description;
         if (this.startTime == null || this.endTime == null) this.duration = 0;
         else this.duration = (int) Duration.between(this.startTime, this.endTime).toDays();
+        this.description = description;
     }
 
     public UserSubs(User user, Service service, String subsAccount) {

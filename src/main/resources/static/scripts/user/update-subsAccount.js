@@ -1,38 +1,41 @@
-function check() {
-    if (document.getElementById("newSubsAccount").value === "") {
-        showAlert("<strong>订阅账号</strong>不能为空！");
-        document.getElementById("SubsAccount-textfield").classList.add("has-error");
-    } else {
-        if (document.getElementById("startTime").value === "" && document.getElementById("endTime").value === "") {
-            document.getElementById("update-usersubs-form").submit();
-        } else {
-            if (document.getElementById("startTime").value === "" || document.getElementById("endTime").value === "") {
-                if (document.getElementById("startTime").value !== "" || document.getElementById("endTime").value === "") {
-                    showAlert("<strong>请输入完整的时间</strong>");
-                    document.getElementById("endTime-textfield").classList.add("has-error");
-                }
-                if (document.getElementById("startTime").value === "" || document.getElementById("endTime").value !== "") {
-                    showAlert("<strong>请输入完整的时间</strong>");
-                    document.getElementById("startTime-textfield").classList.add("has-error");
-                }
+$(function (){
 
-            } else document.getElementById("update-usersubs-form").submit();
-        }
+    let ServiceForm = $("#serviceName-form");
+    let subscriptionNameForm = $("#subscriptionName-form");
+
+    function removeAlert() {
+        $("#alert").html("");
+        ServiceForm.removeClass("has-error");
+        subscriptionNameForm.removeClass("has-error");
+        $("#startTime-textfield").removeClass("has-error");
+        $("#endTime-textfield").removeClass("has-error");
     }
 
-}
+    function showAlert(message) {
+        $("#alert")[0].innerHTML = `<div class ="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert" onclick="removeAlert()">&times;</button>${message}</div>`;
+    }
 
-function showAlert(message) {
-    document.getElementById("alert").innerHTML =
-        '<div class="alert alert-dismissible alert-danger">' +
-        '<button type="button" class="close" data-dismiss="alert" onclick="removeAlert()">&times;</button>' +
-        message +
-        '</div>';
-}
-
-function removeAlert() {
-    document.getElementById("alert").innerHTML = "";
-    document.getElementById("SubsAccount-textfield").classList.remove("has-error");
-    document.getElementById("startTime-textfield").classList.remove("has-error");
-    document.getElementById("endTime-textfield").classList.remove("has-error");
-}
+    $("#modifySubs").on("click",function (){
+        let id = this.dataset.subsId;
+        let subsAccount = $("input[name = subscriptionName]").val();
+        let serviceId = $('select[name = serviceName] option:selected').val();
+        let startTime = $("input[name = startTime]").val();
+        if (startTime !== "" ) startTime += "T00:00";
+        let endTime = $("input[name = endTime]").val();
+        if ((endTime !== "")) endTime += "T00:00";
+        let description = $("textarea[name = note]").val();
+        if (subsAccount === "") {
+            subscriptionNameForm.addClass("has-error");
+            showAlert("请输入账号！");
+        } else {
+            $.post("subscription/modify",{id:id, subsAccount:subsAccount, service:serviceId, startTime:startTime,
+                endTime:endTime, description:description}, function (data) {
+                if(data==="success") $("#main-content").load("/user/info", function () {
+                    $("#nav-bar-links").children().removeClass("active");
+                    $("#nav-bar-links > li:nth-child(3)").addClass("active");
+                    $("#tab-groupType > a")[0].click();
+                });
+            });
+        }
+    });
+});
