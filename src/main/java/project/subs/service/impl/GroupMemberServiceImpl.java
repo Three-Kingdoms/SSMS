@@ -2,6 +2,7 @@ package project.subs.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.subs.bean.Group;
 import project.subs.bean.GroupMember;
 import project.subs.dao.GroupMemberDao;
 import project.subs.service.GroupMemberService;
@@ -30,8 +31,18 @@ public class GroupMemberServiceImpl implements GroupMemberService {
     }
 
     @Override
+    public List<GroupMember> hasJoinedGroups(Integer userId) {
+        return groupMemberDao.findGroupMembersByUserId(userId);
+    }
+
+    @Override
     public void save(GroupMember groupMember) {
         groupMemberDao.save(groupMember);
+    }
+
+    @Override
+    public List<GroupMember> findGroupMembersByGroupIn(List<Group> groups) {
+        return groupMemberDao.findGroupMembersByGroupIn(groups);
     }
 
 

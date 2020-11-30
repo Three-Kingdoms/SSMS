@@ -13,7 +13,7 @@ $(function () {
         if (serviceName === '-1') {
             alert("请选择服务名")
         } else {
-            alert("groupName=" + groupName + ";serviceName=" + serviceName + ";subsAccount=" + subsAccount + ";maxMember=" + maxMember)
+            // alert("创建成功")
             $("#main-content").load("/group/createSubsGroup?groupName=" + groupName
                 + "&serviceName=" + serviceName
                 + "&subsAccount=" + subsAccount

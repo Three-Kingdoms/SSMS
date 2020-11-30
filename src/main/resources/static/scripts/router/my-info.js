@@ -7,6 +7,16 @@ $(function () {
         }
     });
 
+    $("#subsAccount > div > table > tbody > tr > td > a.modify").on("click", function () {
+        let subsId = this.dataset.subsId;
+        $("#main-content").load("/subscription/modify-page?subsId=" + subsId, function () {
+            // $("#nav-bar-links").children().removeClass("active");
+            // $("#nav-bar-links > li:nth-child(3)").addClass("active");
+            // $("#tab-groupType > a")[0].click();
+        });
+
+    });
+
     $("#subsAccount > div > table > tbody > tr > td > a.remove").on("click", function () {
         let subsId = this.dataset.subsId;
         $.post("subscription/remove", {subsId: subsId}, function () {
@@ -17,10 +27,12 @@ $(function () {
             });
         });
 
-        $("#modifySubsInfo").on({
-            click: function () {
-                $("#main-content").load("/subscription/add");
-            }
-        });
     });
+
+    $("#modifySubsInfo").on({
+        click: function () {
+            $("#main-content").load("/subscription/add");
+        }
+    });
+
 });

@@ -1,0 +1,81 @@
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<h3>编辑订阅</h3>
+<hr/>
+<div class="well bs-component">
+    <div id="alert"></div>
+    <form action="#" class="form-horizontal" id="create-subs-form"
+          method="post">
+        <fieldset>
+
+            <div class="form-group" id="subscriptionType-form">
+                <label class="col-lg-2 control-label">订阅类型</label>
+                <div class="col-lg-10">
+                    <div class="radio" th:if="${session.userSubs.service.serviceType} == 'single'">
+                        <label id="radio-single">
+                            <input checked id="subscriptionType-single-radio" name="subscriptionType" type="radio"
+                                   disabled value="single">
+                            个人订阅
+                        </label>
+                    </div>
+                    <div class="radio" th:if="${session.userSubs.service.serviceType} == 'multi'">
+                        <label id="radio-multi">
+                            <input checked id="subscriptionType-multi-radio" name="subscriptionType" type="radio"
+                                   disabled value="multi">
+                            多人订阅
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" id="serviceName-form">
+                <label class="col-lg-2 control-label" for="serviceName-select">服务</label>
+                <div class="col-lg-10" id="subs">
+                    <select class="form-control" id="serviceName-select" name="serviceName" disabled>
+                        <option selected th:text="${session.userSubs.service.serviceName}"
+                                th:value="${session.userSubs.service.id}">服务名</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" id="subscriptionName-form">
+                <label class="col-lg-2 control-label" for="subsName-input">订阅账号</label>
+                <div class="col-lg-10">
+                    <input class="form-control" id="subsName-input" name="subscriptionName"
+                           placeholder="请输入订阅服务的账号（邮箱、手机号等） ..." type="text"
+                           th:value="${session.userSubs.subsAccount}">
+                </div>
+            </div>
+
+            <div class="form-group" id="date-form">
+                <label class="col-lg-2 control-label" for="startTime-input">开始时间</label>
+                <div class="col-lg-10">
+                    <input class="form-control" id="startTime-input" name="startTime" type="date"
+                           th:value="${#temporals.format(session.userSubs.startTime, 'yyyy-MM-dd')}">
+                </div>
+
+                <label class="col-lg-2 control-label" for="endTime-input">结束时间</label>
+                <div class="col-lg-10">
+                    <input class="form-control" id="endTime-input" name="endTime" type="date"
+                           th:value="${#temporals.format(session.userSubs.endTime, 'yyyy-MM-dd')}">
+                </div>
+            </div>
+
+            <div class="form-group" id="note-form">
+                <label class="col-lg-2 control-label" for="note-input">备注</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" id="note-input" name="note" placeholder="备注……" rows="5"
+                              th:text="${session.userSubs.description}"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group" id="form-button">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <a class="btn btn-default" href="javascript:window.history.back();">取消</a>
+                    <a id="modifySubs" class="btn btn-primary" type="button" th:attr="data-subs-id=${session.userSubs.id}">修改</a>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+<script src="/scripts/user/update-subsAccount.js"></script>

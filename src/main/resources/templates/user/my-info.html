@@ -84,7 +84,7 @@
                         <td th:text="${#temporals.format(userSubs.startTime, 'yyyy-MM-dd')}">开始时间</td>
                         <td th:text="${#temporals.format(userSubs.endTime, 'yyyy-MM-dd')}">到期时间</td>
                         <td>
-                            <a class="btn btn-primary btn-sm modify" href="javascript:void(0);" id="modifySubsInfo">修改</a>
+                            <a class="btn btn-primary btn-sm modify" href="javascript:void(0);" th:attr="data-subs-id=${userSubs.id}">修改</a>
                             <a class="btn btn-primary btn-sm remove" href="javascript:void(0);" th:attr="data-subs-id=${userSubs.id}">移除</a>
                         </td>
                     </tr>

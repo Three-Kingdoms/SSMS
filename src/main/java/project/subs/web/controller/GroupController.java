@@ -1,5 +1,6 @@
 package project.subs.web.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -221,14 +222,61 @@ public class GroupController {
      */
     @RequestMapping("/findGroupByServiceId")
     public String findGroupByServiceId(Integer serviceId, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        //根据服务号去查所有此服务的
         List<UserSubs> subs = subsService.findUserSubsByServiceId(serviceId);
-        List<Group> groups = groupService.findGroupsByUserSubsIn(subs);
-        for (Group group : groups
-        ) {
-            System.out.println(group);
+
+        //此服务所有的小组
+        List<Group> multiGroups = groupService.findGroupsByUserSubsIn(subs);
+
+        List<GroupMember> hasJoinedGroups = groupMemberService.hasJoinedGroups(user.getId());
+
+        //用于存放没有加入的小组
+        List<Group> notJoinedGroupList = new ArrayList<>();;
+        List<Group> joinedGroupList = new ArrayList<>();
+//        //存放我已加入的小组的人数
+//        List<List<GroupMember>> joinedGroupHaveMembers =  new ArrayList<>();
+//        //存放未加入的小组的现有人数
+//        List<List<GroupMember>> notJoinedGroupHaveMembers =  new ArrayList<>();
+
+        //查询自己否在查询的小组内
+        for ( Group group : multiGroups ) {
+            for (GroupMember hasJoinGroup: hasJoinedGroups ) {
+                if(group.getId().equals(hasJoinGroup.getGroup().getId())){
+                    joinedGroupList.add(group);
+                    //查询已加入的小组的现有人数
+//                    joinedGroupHaveMembers.add(groupMemberService.findGroupMemberByGroupId(group.getId()));
+                }
+            }
         }
-        session.setAttribute("multiGroups", groups);
-        return "group/add-find-group";
+
+        //查询未加入的小组
+        for ( Group group : multiGroups ) {
+            notJoinedGroupList.add(group);
+            for (Group hasJoinGroup: joinedGroupList ) {
+                if(group.getId().equals(hasJoinGroup.getId())){
+                    notJoinedGroupList.remove(group);
+                }
+            }
+        }
+
+//        //查询未加入的小组的现有人数
+//        for (Group group:notJoinedGroupList
+//        ) {
+//            notJoinedGroupHaveMembers.add(groupMemberService.findGroupMemberByGroupId(group.getId()));
+//        }
+
+//        for ( Group group: joinedGroupList) {
+//           List<GroupMember> members = groupMemberService.findGroupMemberByGroupId(group.getId());
+//
+//        }
+
+        session.setAttribute("multiGroups",multiGroups);
+        session.setAttribute("notJoinedGroupList",notJoinedGroupList);
+//        session.setAttribute("notJoinedGroupHaveMembers",notJoinedGroupHaveMembers);
+        session.setAttribute("joinedGroupList",joinedGroupList);
+//        session.setAttribute("joinedGroupHaveMembers",joinedGroupHaveMembers);
+        return "group/add-find-group-type";
     }
 
 
