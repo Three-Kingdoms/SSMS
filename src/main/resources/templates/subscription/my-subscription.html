@@ -11,7 +11,7 @@
     </li>
 </ul>
 <hr/>
-<p class="lead" th:if="${session.singleSubs.isEmpty()}">你还没有添加订阅信息</p>
+<p class="lead" th:if="${session.singleSubs.size()==0}">你还没有添加订阅信息</p>
 <div class="cards single-user" th:if="${!session.singleSubs.isEmpty()}" th:each="subs: ${session.singleSubs}">
     <a class="panel panel-default" href="javascript:void(0);" th:attr="data-subs-id=${subs.id}">
         <div class="panel-heading" th:text="${subs.service.serviceName}">服务名</div>

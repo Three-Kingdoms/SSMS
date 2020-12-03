@@ -129,7 +129,7 @@ li#groupDropdown > ul {
 
 .cards div.panel {
     color: #666666;
-    width: 70vw;
+    width: 90vw;
     margin: 1vh auto;
 }
 
@@ -230,7 +230,8 @@ button.btn.btn-primary.btn-lg {
 }
 
 #groupMemberTable > table,
-#groupMemberTable > table > thead > tr > th {
+#groupMemberTable > table > thead > tr > th,
+#groupMemberTable > table > tbody:last-child > tr > th{
     text-align: center;
     font-size: 15px;
 }
@@ -244,6 +245,7 @@ button.btn.btn-primary.btn-lg {
     margin: 0 5px;
 }
 
+#search-type > div.jumbotron > form > fieldset,
 form.update-info-form > fieldset,
 form#add-subs-form > fieldset,
 form#update-subs-form > fieldset {
@@ -253,6 +255,7 @@ form#update-subs-form > fieldset {
     margin-right: auto;
 }
 
+#searchGroup,
 #new-nickname-text-field > div > span > a.btn {
     margin-left: 23px;
 }

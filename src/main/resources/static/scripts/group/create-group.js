@@ -3,7 +3,7 @@ $(function () {
     $("#subs-multi-select")[0].onchange = function () {
         let serviceName = this.value;
         $("#subsAccount-select").load("/group/findSubsAccount?serviceName=" + serviceName);
-    }
+    };
 
     $("#form-button > div > button").on('click', function () {
         let groupName = $("#groupName-input").val();
@@ -14,13 +14,21 @@ $(function () {
             alert("请选择服务名")
         } else {
             // alert("创建成功")
-            $("#main-content").load("/group/createSubsGroup?groupName=" + groupName
+            $.post("/group/createSubsGroup?groupName=" + groupName
                 + "&serviceName=" + serviceName
                 + "&subsAccount=" + subsAccount
-                + "&maxMember=" + maxMember);
+                + "&maxMember=" + maxMember, function (data) {
+                if (data === "success") {
+                    $("#nav-bar-links > li:nth-child(2) > a").click();
+                    alert("创建成功");
+                }
+            });
         }
+    });
 
-    })
+    $("#form-button > div > a").on("click", function () {
+        $("#nav-bar-links > li:nth-child(2) > a").click();
+    });
 
     function formatForm() {
         if (document.querySelector("#groupType-multi-radio").checked) {

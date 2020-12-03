@@ -27,12 +27,9 @@
                 <td th:text="${#request.getAttribute('endTime')}">2020-12-31</td>
             </tr>
             <tr class="active">
-                <th><label for="SubscriptionNote">备注</label></th>
-                <td>
-                    <textarea id="SubscriptionNote" readonly rows="3" th:text="${#request.getAttribute('description')}">
-                        这里是备注
-                    </textarea>
-                </td>
+                <th>备注</th>
+                <td th:if="${#request.getAttribute('description')} == ''">空</td>
+                <td th:if="${#request.getAttribute('description')} != ''" th:text="${#request.getAttribute('description')}"></td>
             </tr>
             </tbody>
         </table>

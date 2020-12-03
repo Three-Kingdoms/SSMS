@@ -1,11 +1,11 @@
-<html lang="zh">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <h3>加入多人小组</h3>
 <hr/>
 <ul class="nav nav-tabs">
-    <li class="active" id="tab-groupId" onclick="showSearchBox()">
+    <li class="active" id="tab-groupId">
         <a aria-expanded="true" data-toggle="tab" href="#search-box">按组号搜索</a>
     </li>
-    <li class="" id="tab-groupType" onclick="showSearchType()">
+    <li class="" id="tab-groupType">
         <a aria-expanded="false" data-toggle="tab" href="#search-type">按类型筛选</a>
     </li>
 </ul>
@@ -16,16 +16,16 @@
             <div class="form-group" id="search-field">
                 <div id="alert"></div>
                 <div class="input-group">
-                    <input name="searchType" type="hidden" value="groupId"/>
+<!--                    <input name="searchType" type="hidden" value="groupId"/>-->
                     <input class="form-control" id="search-input" name="groupId" placeholder="输入要搜索的组号 ..."
                            type="text" value="">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" onclick="checkEmpty()" type="button">搜索</button>
+                        <button class="btn btn-default" onclick="checkEmpty()" type="button" id="searchById">搜索</button>
                     </span>
                 </div>
             </div>
         </form>
-        <div class="search-result">
+        <div class="search-result search-result-id">
             <!--            搜索结果-->
         </div>
     </div>
@@ -37,7 +37,7 @@
                     <input name="searchType" type="hidden" value="serviceId"/>
                     <div class="form-group">
                         <label class="col-lg-2 control-label" for="select">订阅服务名</label>
-                        <div class="col-lg-10" xmlns:th="http://www.thymeleaf.org">
+                        <div class="input-group col-lg-10">
                             <select class="form-control" id="select" name="serviceType"
                                     onchange="showServices()">
                                 <option value="-1">请选择对应的服务</option>
@@ -45,13 +45,15 @@
                                         th:each="service:${session.serviceList}"
                                         th:text="${service.serviceName}"></option>
                             </select>
-                            <a class="btn btn-primary btn-lg" id="searchGroup">搜索</a>
+                            <span class="input-group-btn">
+                                <a class="btn btn-primary btn-lg" id="searchByType">搜索</a>
+                            </span>
                         </div>
                     </div>
                 </fieldset>
             </form>
         </div>
-        <div class="search-result" id="search-result2">
+        <div class="search-result search-result-type">
             <!--搜索结果-->
         </div>
     </div>

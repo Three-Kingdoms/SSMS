@@ -15,10 +15,10 @@
 <div class="cards multi-user">
     <a class="panel panel-default" href="javascript:void(0);" th:attr="data-group=${multisubs.getGroup().getId()}"
        th:each="multisubs:${session.multiSubs}">
-        <div class="panel-heading" th:text="'小组名:'+${multisubs.getGroup().getGroupName()}"></div>
+        <div class="panel-heading" th:text="'小组名：'+${multisubs.getGroup().getGroupName()}"></div>
         <div class="panel-body">
-            <span th:text="'服务名:'+${multisubs.getGroup().getUserSubs().getService().getServiceName()}"></span><br/>
-            <span th:text="'到期时间:'+${multisubs.getGroup().getUserSubs().getEndTime()}"></span>
+            <span th:text="'服务名：'+${multisubs.getGroup().getUserSubs().getService().getServiceName()}"></span><br/>
+            <span th:text="'到期日：'+${#temporals.format(multisubs.getGroup().getUserSubs().getEndTime(), 'yyyy-MM-dd')}"></span>
         </div>
     </a>
 </div>

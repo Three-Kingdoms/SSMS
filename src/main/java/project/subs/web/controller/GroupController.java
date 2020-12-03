@@ -118,8 +118,6 @@ public class GroupController {
         group.setId(groupId);
         LocalDateTime joinTime = LocalDateTime.now();
         groupMemberService.save(new GroupMember(group, user, false, joinTime));
-
-
         return "group/add-group";
     }
 
@@ -189,6 +187,7 @@ public class GroupController {
      * @return
      */
     @RequestMapping("/createSubsGroup")
+    @ResponseBody
     public String createSubsGroup(HttpSession session, String groupName, String serviceName, String subsAccount, Integer maxMember) {
         //查出多人订阅服务
         Service service = serviceService.findByServiceNameAndAndServiceType(serviceName, ServiceType.multi);
@@ -204,7 +203,7 @@ public class GroupController {
         //创建多人小组的同时，把自己设置为小组管理员
         GroupMember groupMember = new GroupMember(group, user, true, LocalDateTime.now());
         groupMemberService.save(groupMember);
-        return "group/create-group-success";
+        return "success";
     }
 
     @RequestMapping("/add")
@@ -278,6 +277,4 @@ public class GroupController {
 //        session.setAttribute("joinedGroupHaveMembers",joinedGroupHaveMembers);
         return "group/add-find-group-type";
     }
-
-
 }

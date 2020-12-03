@@ -39,25 +39,31 @@
             <tr class="active">
                 <th>职位</th>
                 <th>昵称</th>
-                <th>用户名</th>
-                <th>操作</th>
+                <th>用户 ID</th>
+                <th th:if="${session.member.admin}">操作</th>
             </thead>
             <tbody th:each="groupmembers:${session.groupMembers}">
-            <tr class="active">
-                <td th:if="${groupmembers.isAdmin()==true}">管理员</td>
-                <td th:if="${groupmembers.isAdmin()==false}">普通成员</td>
-                <td th:text="${groupmembers.getUser().getNickname()}">昵称</td>
-                <td th:text="${groupmembers.getUser().getId()}">用户名</td>
-                <td>
-                    <a class="btn btn-primary btn-sm groupMemberId" href="javascript:void(0);"
-                       th:attr="data-user-id=${groupmembers.getUser().getId()},data-group-id=${groupmembers.getGroup().getId()}"
-                       th:if="${groupmembers.isAdmin()==false and session.member.getUser().getId()==session.groupMembers.get(0).getUser().getId()}"
-                    >移除</a>
-                </td>
-            </tr>
+                <tr class="active">
+                    <td th:if="${groupmembers.admin==true}">管理员</td>
+                    <td th:if="${groupmembers.admin==false}">普通成员</td>
+                    <td th:text="${groupmembers.user.nickname}">昵称</td>
+                    <td th:text="${groupmembers.user.id}">用户名</td>
+                    <td th:if="${session.member.admin}">
+                        <a class="btn btn-primary btn-sm groupMemberId" href="javascript:void(0);"
+                           th:attr="data-user-id=${groupmembers.user.id},data-group-id=${groupmembers.group.id}"
+                           th:if="${groupmembers.admin==false and session.member.user.id==session.groupMembers.get(0).user.id}">
+                            移除
+                        </a>
+                    </td>
+                </tr>
             </tbody>
+            <tr class="active">
+                <th>备注</th>
+                <td th:if="${session.group.userSubs.description} != ''" th:text="${session.group.userSubs.description}" th:colspan="3"></td>
+                <td th:if="${session.group.userSubs.description} == ''" th:colspan="3">空</td>
+            </tr>
         </table>
     </div>
 </div>
-<script src="/scripts/group/remove-dissolve-members.js"/>
-
+<script src="/scripts/group/remove-dissolve-members.js"></script>
+</html>

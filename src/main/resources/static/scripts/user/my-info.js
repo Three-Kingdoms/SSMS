@@ -1,4 +1,3 @@
-
 $(function (){
 
     $("#tab-groupId").on("click",function(){

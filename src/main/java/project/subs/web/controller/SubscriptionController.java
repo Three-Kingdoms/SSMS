@@ -27,15 +27,15 @@ public class SubscriptionController {
     public String mySubscription(HttpSession session) {
         User user = (User) session.getAttribute("user");
         List<UserSubs> userSubsList = subsService.findUserSubsByUserId(user.getId());
+        List<UserSubs> singleSubs = new ArrayList<>();
         if (!userSubsList.isEmpty()) {
-            List<UserSubs> singleSubs = new ArrayList<>();
             for (UserSubs subs : userSubsList) {
                 if (subs.getService().getServiceType().equals(ServiceType.single)) {
                     singleSubs.add(subs);
                 }
             }
-            session.setAttribute("singleSubs", singleSubs);
         }
+        session.setAttribute("singleSubs", singleSubs);
         return "subscription/my-subscription";
     }
 
@@ -76,7 +76,7 @@ public class SubscriptionController {
     @RequestMapping("/multi")
     public String multiUserSubscription(HttpSession session) {
         User user = (User) session.getAttribute("user");
-        System.out.println("多人订阅" + user);
+//        System.out.println("多人订阅" + user);
         List<GroupMember> members = subsService.findGroupMemberByUserId(user.getId());
         session.setAttribute("multiSubs", members);
 

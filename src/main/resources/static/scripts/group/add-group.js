@@ -1,29 +1,28 @@
-function showSearchBox() {
-    document.getElementById("tab-groupType").classList.remove("active");
-    document.getElementById("tab-groupType").getElementsByTagName("a")[0].ariaExpanded = false;
-    document.getElementById("tab-groupId").classList.add("active");
-    document.getElementById("tab-groupId").getElementsByTagName("a")[0].ariaExpanded = true;
-    document.getElementById("search-type").classList.remove("active", "in");
-    document.getElementById("search-box").classList.add("active", "in");
-}
-
-function showSearchType() {
-    document.getElementById("tab-groupId").classList.remove("active");
-    document.getElementById("tab-groupId").getElementsByTagName("a")[0].ariaExpanded = false;
-    document.getElementById("tab-groupType").classList.add("active");
-    document.getElementById("tab-groupType").getElementsByTagName("a")[0].ariaExpanded = true;
-    document.getElementById("search-box").classList.remove("active", "in");
-    document.getElementById("search-type").classList.add("active", "in");
-}
+// function showSearchBox() {
+//     document.getElementById("tab-groupType").classList.remove("active");
+//     document.getElementById("tab-groupType").getElementsByTagName("a")[0].ariaExpanded = false;
+//     document.getElementById("tab-groupId").classList.add("active");
+//     document.getElementById("tab-groupId").getElementsByTagName("a")[0].ariaExpanded = true;
+//     document.getElementById("search-type").classList.remove("active", "in");
+//     document.getElementById("search-box").classList.add("active", "in");
+// }
+//
+// function showSearchType() {
+//     document.getElementById("tab-groupId").classList.remove("active");
+//     document.getElementById("tab-groupId").getElementsByTagName("a")[0].ariaExpanded = false;
+//     document.getElementById("tab-groupType").classList.add("active");
+//     document.getElementById("tab-groupType").getElementsByTagName("a")[0].ariaExpanded = true;
+//     document.getElementById("search-box").classList.remove("active", "in");
+//     document.getElementById("search-type").classList.add("active", "in");
+// }
 
 function checkEmpty() {
     if (document.getElementById('search-input').value === '') {
         showAlert('组号不能为空！');
         document.getElementById('search-field').classList.add("has-warning");
-    } else {
-        let groupId = $("#search-input").val();
-        $(".search-result").load("group/find?groupId=" + groupId);
-
+    // } else {
+    //     let groupId = $("#search-input").val();
+    //     $(".search-result-id").load("group/find?groupId=" + groupId);
     }
 }
 
@@ -40,16 +39,18 @@ $("#exit").on('click', function () {
     });
 });
 
+$("#searchById").on('click', function () {
+    let groupId = $("#search-input").val();
+    $(".search-result-id").load("group/find?groupId=" + groupId);
+})
+
 /**
  * 按照服务号去查所有该服务的账号
  */
-$("#searchGroup").on('click', function () {
+$("#searchByType").on('click', function () {
     let serviceId = $("#select").val();
     // alert(serviceId);
-    $("#search-result2").load("group/findGroupByServiceId?serviceId="+serviceId);
-
-
-
+    $(".search-result-type").load("group/findGroupByServiceId?serviceId="+serviceId);
 })
 
 function addGroup() {
@@ -64,24 +65,24 @@ function addGroup() {
 function showAlert(message) {
     document.getElementById('alert').innerHTML =
         '<div class="alert alert-dismissible alert-warning">' +
-        '<a class="close" data-dismiss="alert">&times;</a>' +
+        '<a class="close" data-dismiss="alert" onclick="removeAlert()">&times;</a>' +
         message +
         '</div>';
 }
 
-// function removeAlert() {
-//     document.getElementById('alert').innerHTML = '';
-//     document.getElementById('search-field').classList.remove("has-warning");
-// }
-function showServices() {
-    if (document.getElementById('select').options[0].selected) {
-        document.getElementById('services-multi').style.display = 'block';
-        document.getElementById('services-single').style.display = 'none';
-    }
-    if (document.getElementById('select').options[1].selected) {
-        document.getElementById('services-multi').style.display = 'none';
-        document.getElementById('services-single').style.display = 'block';
-    }
-    // document.getElementsByClassName('search-result')[1].innerHTML = '';
+function removeAlert() {
+    document.getElementById('alert').innerHTML = '';
+    document.getElementById('search-field').classList.remove("has-warning");
 }
+// function showServices() {
+//     if (document.getElementById('select').options[0].selected) {
+//         document.getElementById('services-multi').style.display = 'block';
+//         document.getElementById('services-single').style.display = 'none';
+//     }
+//     if (document.getElementById('select').options[1].selected) {
+//         document.getElementById('services-multi').style.display = 'none';
+//         document.getElementById('services-single').style.display = 'block';
+//     }
+//     // document.getElementsByClassName('search-result')[1].innerHTML = '';
+// }
 

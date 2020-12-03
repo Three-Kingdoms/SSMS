@@ -19,7 +19,7 @@
                 <label class="col-lg-2 control-label">小组类型</label>
                 <div class="col-lg-10">
                     <div class="radio">
-                        <label onclick="formatForm()">
+                        <label>
                             <input checked disabled id="groupType-multi-radio" name="groupType" type="radio" value="多">
                             多人订阅小组
                         </label>
@@ -53,13 +53,12 @@
 
             <div class="form-group" id="form-button">
                 <div class="col-lg-10 col-lg-offset-2">
-                    <a class="btn btn-default" href="#">取消</a>
-                    <button class="btn btn-primary" onclick="checkForm()" type="button">创建</button>
+                    <a class="btn btn-default" href="javascript:void(0);">取消</a>
+                    <button class="btn btn-primary" type="button">创建</button>
                 </div>
             </div>
 
         </fieldset>
     </form>
-    <script>formatForm()</script>
 </div>
 <script src="scripts/group/create-group.js"></script>
