@@ -3,7 +3,7 @@
 <hr/>
 <div class="well bs-component">
     <div id="alert"></div>
-    <p style="font-size: large" th:if="${session.serviceName.size()}==0">你还没有多人订阅，请多人订阅后再创建小组</p>
+    <p style="font-size: large" th:if="${session.serviceName.size()}==0">请添加多人订阅账号后再创建小组</p>
     <form class="form-horizontal" id="create-group-form"
           th:if="${session.serviceName.size()}!=0"
           method="post">
@@ -61,4 +61,5 @@
         </fieldset>
     </form>
 </div>
-<script src="scripts/group/create-group.js"></script>
+<script src="../static/scripts/group/create-group.js" th:src="@{scripts/group/create-group.js}"></script>
+</html>

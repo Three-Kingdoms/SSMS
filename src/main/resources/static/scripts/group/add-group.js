@@ -41,8 +41,8 @@ $("#exit").on('click', function () {
 
 $("#searchById").on('click', function () {
     let groupId = $("#search-input").val();
-    $(".search-result-id").load("group/find?groupId=" + groupId);
-})
+    if (groupId !== "") $(".search-result-id").load("group/find?groupId=" + groupId);
+});
 
 /**
  * 按照服务号去查所有该服务的账号

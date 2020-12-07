@@ -16,11 +16,13 @@
             <div class="form-group" id="search-field">
                 <div id="alert"></div>
                 <div class="input-group">
-<!--                    <input name="searchType" type="hidden" value="groupId"/>-->
-                    <input class="form-control" id="search-input" name="groupId" placeholder="输入要搜索的组号 ..."
-                           type="text" value="">
+                    <!--                    <input name="searchType" type="hidden" value="groupId"/>-->
+                    <label>
+                        <input class="form-control" id="search-input" name="groupId" placeholder="输入要搜索的组号 ..."
+                               type="text" value="">
+                    </label>
                     <span class="input-group-btn">
-                        <button class="btn btn-default" onclick="checkEmpty()" type="button" id="searchById">搜索</button>
+                        <a class="btn btn-default" id="searchById" onclick="checkEmpty()" type="button">搜索</a>
                     </span>
                 </div>
             </div>
@@ -58,4 +60,5 @@
         </div>
     </div>
 </div>
-<script src="/scripts/group/add-group.js"/>
+<script src="../static/scripts/group/add-group.js" th:src="@{scripts/group/add-group.js}"></script>
+</html>

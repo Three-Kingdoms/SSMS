@@ -60,7 +60,6 @@
                 <label class="col-lg-2 control-label" for="startTime-input">开始时间</label>
                 <div class="col-lg-10">
                     <input class="form-control" id="startTime-input" name="startTime" type="date">
-
                 </div>
 
                 <label class="col-lg-2 control-label" for="endTime-input">结束时间</label>
@@ -78,7 +77,7 @@
 
             <div class="form-group" id="form-button">
                 <div class="col-lg-10 col-lg-offset-2">
-                    <a class="btn btn-default" href="javascript:window.history.back();">取消</a>
+                    <a class="btn btn-default" href="javascript:void(0);">取消</a>
                     <a id="createSubs" class="btn btn-primary" type="button">创建</a>
                 </div>
             </div>
@@ -86,4 +85,5 @@
         </fieldset>
     </form>
 </div>
-<script src="/scripts/user/add-subsAccount.js"></script>
+<script src="../static/scripts/user/add-subsAccount.js" th:src="@{scripts/user/add-subsAccount.js}"></script>
+</html>

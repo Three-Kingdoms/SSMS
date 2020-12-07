@@ -6,13 +6,13 @@ $(function () {
         click: function () {
             switch ($.trim($(this).text())) {
                 case "个人订阅":
-                    mainContent.load("/subscription/my");
+                    mainContent.load("subscription/my");
                     break;
                 case "多人订阅":
-                    mainContent.load("/subscription/multi");
+                    mainContent.load("subscription/multi");
                     break;
                 case "我的信息":
-                    mainContent.load("/user/info");
+                    mainContent.load("user/info");
                     break;
             }
             $(this).parent().addClass("active").siblings().removeClass("active");
@@ -23,14 +23,14 @@ $(function () {
 
     $("#main-content > div.cards.single-user > a.panel.panel-default").on({
         click: function () {
-            mainContent.load("/subscription/info");
+            mainContent.load("subscription/info");
             $("#nav-bar-links").children().removeClass("active");
         }
     });
 
     $("#main-content > div.cards.multi-user > a.panel.panel-default").on({
         click: function () {
-            mainContent.load("/group/info");
+            mainContent.load("group/info");
             $("#nav-bar-links").children().removeClass("active");
         }
     });

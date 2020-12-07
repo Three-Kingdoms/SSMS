@@ -1,3 +1,9 @@
+.body-login, .body-register {
+    background: url(https://bing.mcloc.cn/api/) center;
+    background-size: cover;
+
+}
+
 .login-container {
     width: 100%;
     min-height: 100vh;
@@ -173,9 +179,9 @@ p.lead {
     padding: 20px;
 }
 
-#search-box > form > div {
-    margin: 0 10vw;
-}
+/*#search-box > form > div {*/
+/*    margin: 0 10vw;*/
+/*}*/
 
 .search-result > div > div > div.panel-heading,
 #main-content > div > div.panel-heading {
@@ -245,17 +251,18 @@ button.btn.btn-primary.btn-lg {
     margin: 0 5px;
 }
 
+#search-field,
 #search-type > div.jumbotron > form > fieldset,
 form.update-info-form > fieldset,
-form#add-subs-form > fieldset,
-form#update-subs-form > fieldset {
+#create-subs-form > fieldset {
     width: 60vw;
-    max-width: 470px;
+    max-width: 543px;
     margin-left: auto;
     margin-right: auto;
 }
 
-#searchGroup,
+#searchById,
+#search-type > div.jumbotron > form > fieldset > div > div > span > a.btn,
 #new-nickname-text-field > div > span > a.btn {
     margin-left: 23px;
 }

@@ -70,7 +70,7 @@
 
             <div class="form-group" id="form-button">
                 <div class="col-lg-10 col-lg-offset-2">
-                    <a class="btn btn-default" href="javascript:window.history.back();">取消</a>
+                    <a class="btn btn-default" href="javascript:void(0);">取消</a>
                     <a id="modifySubs" class="btn btn-primary" type="button" th:attr="data-subs-id=${session.userSubs.id}">修改</a>
                 </div>
             </div>
@@ -78,4 +78,4 @@
         </fieldset>
     </form>
 </div>
-<script src="/scripts/user/update-subsAccount.js"></script>
+<script src="../static/scripts/user/update-subsAccount.js" th:src="@{scripts/user/update-subsAccount.js}"></script>

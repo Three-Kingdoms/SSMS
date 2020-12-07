@@ -3,15 +3,15 @@ $(function () {
     let singleServiceForm = $("#single-serviceName-form");
     let multiServiceForm = $("#multi-serviceName-form");
     let subscriptionNameForm = $("#subscriptionName-form");
+    let dateForm = $("#date-form");
 
-    function removeAlert() {
-        $("#alert").html("");
-        singleServiceForm.removeClass("has-error");
-        multiServiceForm.removeClass("has-error");
-        subscriptionNameForm.removeClass("has-error");
-        $("#startTime-textfield").removeClass("has-error");
-        $("#endTime-textfield").removeClass("has-error");
-    }
+    // function removeAlert() {
+    //     // $("#alert").html("");
+    //     singleServiceForm.removeClass("has-error");
+    //     multiServiceForm.removeClass("has-error");
+    //     subscriptionNameForm.removeClass("has-error");
+    //     dateForm.removeClass("has-error");
+    // }
 
     function showAlert(message) {
         $("#alert")[0].innerHTML = `<div class ="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert" onclick="removeAlert()">&times;</button>${message}</div>`;
@@ -25,7 +25,6 @@ $(function () {
         singleServiceForm.css("display", "none");
         multiServiceForm.css("display", "");
     });
-
 
     $("#createSubs").on("click",function (){
         let subsName = $("input[name = subscriptionName]").val();
@@ -47,13 +46,24 @@ $(function () {
         } else if (subsName === "") {
             subscriptionNameForm.addClass("has-error");
             showAlert("请输入账号！");
+        } else if (startTime === "" || endTime === "") {
+            showAlert("请输入开始时间和结束时间！");
+            dateForm.addClass("has-error");
         } else {
-            $.post("subscription/create",{subsAccount:subsName, service:serviceId, startTime:startTime,
-                endTime:endTime, description:description}, function (data) {
-                if(data==="success") $("#main-content").load("/subscription/my");
+            $.post("subscription/create", {
+                subsAccount: subsName, service: serviceId, startTime: startTime,
+                endTime: endTime, description: description
+            }, function (data) {
+                if (data === "success") $("#main-content").load("subscription/my");
             });
         }
     });
+
+    $("#form-button > div > a.btn.btn-default").on("click", function () {
+        $("#nav-bar-links > li:nth-child(2) > a").click();
+
+    });
+
 });
 
 

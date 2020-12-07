@@ -1,4 +1,5 @@
-<div id="my-info" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<div id="my-info">
     <h3>我的信息</h3>
     <hr/>
     <ul class="nav nav-tabs">
@@ -73,7 +74,12 @@
                         <th>订阅账号</th>
                         <th>开始日</th>
                         <th>到期日</th>
-                        <th><a href="javascript:void(0);"><img alt="添加图标" height="28px" src="/images/add.svg"></a></th>
+                        <th>
+                            <a href="javascript:void(0);">
+                                <img alt="添加图标" height="28px"
+                                     src="../static/images/add.svg" th:src="@{images/add.svg}">
+                            </a>
+                        </th>
                     </tr>
                     </thead>
                     <tbody th:each="userSubs:${session.userSubsList}">
@@ -84,8 +90,10 @@
                         <td th:text="${#temporals.format(userSubs.startTime, 'yyyy-MM-dd')}">开始时间</td>
                         <td th:text="${#temporals.format(userSubs.endTime, 'yyyy-MM-dd')}">到期时间</td>
                         <td>
-                            <a class="btn btn-primary btn-sm modify" href="javascript:void(0);" th:attr="data-subs-id=${userSubs.id}">修改</a>
-                            <a class="btn btn-primary btn-sm remove" href="javascript:void(0);" th:attr="data-subs-id=${userSubs.id}">移除</a>
+                            <a class="btn btn-primary btn-sm modify" href="javascript:void(0);"
+                               th:attr="data-subs-id=${userSubs.id}">修改</a>
+                            <a class="btn btn-primary btn-sm remove" href="javascript:void(0);"
+                               th:attr="data-subs-id=${userSubs.id}">移除</a>
                         </td>
                     </tr>
                     </tbody>
@@ -94,5 +102,6 @@
         </div>
     </div>
 </div>
-<script src="/scripts/router/my-info.js"></script>
-<script src="/scripts/user/update-myinfo.js"></script>
+<script src="../static/scripts/router/my-info.js" th:src="@{scripts/router/my-info.js}"></script>
+<script src="../static/scripts/user/update-myinfo.js" th:src="@{scripts/user/update-myinfo.js}"></script>
+</html>
