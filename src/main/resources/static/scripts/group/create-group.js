@@ -14,7 +14,7 @@ $(function () {
             alert("请选择服务名")
         } else {
             // alert("创建成功")
-            $.post("/group/createSubsGroup?groupName=" + groupName
+            $.post("group/createSubsGroup?groupName=" + groupName
                 + "&serviceName=" + serviceName
                 + "&subsAccount=" + subsAccount
                 + "&maxMember=" + maxMember, function (data) {
