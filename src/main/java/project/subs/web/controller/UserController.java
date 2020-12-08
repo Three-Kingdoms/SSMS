@@ -28,27 +28,26 @@ public class UserController {
     private SubsService subsService;
 
     @RequestMapping("/verify/register")
-    public String verify(User user, HttpServletRequest request) {
+    @ResponseBody
+    public String verify(User user) {
         if (userService.verify(user.getUsername()) != null) {
-            request.setAttribute("error", "该账户已存在");
-            return "forward:/register";
+            return "error";
         } else {
             userService.saveUser(user);
-            request.setAttribute("success", "注册成功");
-            return "/user/login";
+            return "success";
         }
     }
 
     @RequestMapping("/verify/login")
+    @ResponseBody
     public String login(String username, String password, HttpServletRequest request, HttpSession session) {
-
         User user = userService.findUserByUsername(username);
         if (user != null && user.getPassword().equals(password)) {
             session.setAttribute("user", user);
-            return "redirect:/index";
+            return "success";
         } else {
-            request.setAttribute("fail", "用户名或密码错误");
-            return "/user/login";
+//            request.setAttribute("fail", "用户名或密码错误");
+            return "error";
         }
     }
 

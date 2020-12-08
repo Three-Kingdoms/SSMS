@@ -2,7 +2,6 @@ package project.subs.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import project.subs.bean.User;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,18 +10,18 @@ import javax.servlet.http.HttpSession;
 // 这个类专用用来做视图映射的，将逻辑视图名映射成物理视图名。【返回页面的】
 public class ViewController {
 
-    @RequestMapping("/login")
-    public String login(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            return "user/login";
-        } else {
-            return "redirect:/";
-        }
+    @RequestMapping({"/login", "/register"})
+    public String login_register() {
+        return "user/login-register";
     }
 
-    @RequestMapping("/register")
-    public String register() {
+    @RequestMapping("/login-page")
+    public String loginPage() {
+        return "user/login";
+    }
+
+    @RequestMapping("/register-page")
+    public String registerPage() {
         return "user/register";
     }
 
